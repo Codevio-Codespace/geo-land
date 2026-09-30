@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Geo&amp;Land — Admin · Projects</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+<link rel="stylesheet" href="assets/css/admin.css">
+<script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body class="admin-body">
+
+<!-- ============ ACCESS GATE ============ -->
+<div class="gate" id="gate">
+  <div class="gate__card">
+    <span class="mono gate__brand">Geo&amp;Land — Admin</span>
+    <h1 class="gate__title">Projects Panel</h1>
+    <p class="gate__text">
+      Manage the projects shown on the public Projects section. Enter the admin
+      access key to continue.
+    </p>
+    <form class="gate__form" id="gateForm">
+      <div class="gate__field" id="gateEmailWrap" hidden>
+        <label class="mono" for="gateEmail">Email</label>
+        <input id="gateEmail" type="email" autocomplete="username" placeholder="admin@yourdomain.com">
+      </div>
+      <div class="gate__field">
+        <label class="mono" for="gateKey" id="gateKeyLabel">Access key</label>
+        <div class="gate__row">
+          <input id="gateKey" type="password" autocomplete="current-password" placeholder="••••••••••••" required>
+          <button class="btn btn--accent" type="submit" id="gateSubmit">Unlock</button>
+        </div>
+      </div>
+      <p class="gate__error mono" id="gateError" hidden></p>
+    </form>
+    <p class="gate__note mono" id="gateNote"></p>
+    <a class="gate__back mono" href="index.html">← Back to website</a>
+  </div>
+</div>
+
+<!-- ============ PANEL ============ -->
+<div class="admin" id="admin" hidden>
+
+  <header class="admin-top">
+    <div class="admin-top__inner">
+      <div class="admin-top__brand">
+        <span class="admin-top__wordmark">Geo&amp;Land</span>
+        <span class="mono admin-top__tag">Admin · Projects</span>
+      </div>
+      <div class="admin-top__actions">
+        <a class="btn btn--ghost btn--sm" href="index.html#projects">View site</a>
+        <button class="btn btn--ghost btn--sm" type="button" id="signOut">Sign out</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="admin-main">
+    <div class="admin-banner" id="modeBanner" hidden>
+      <span class="mono">
+        Local mode — Supabase is not configured, projects are stored in this browser only.<br>
+        Fill <strong>SUPABASE_URL</strong> and <strong>SUPABASE_ANON_KEY</strong> in <strong>.env</strong>,
+        run <strong>node server.js</strong> and reload — see <strong>SUPABASE-SETUP.md</strong> (2 minutes).
+      </span>
+    </div>
+
+    <div class="admin-wrap">
+
+      <!-- ===== List column ===== -->
+      <section class="admin-panel admin-panel--list">
+        <div class="admin-panel__head">
+          <div>
+            <p class="eyebrow">Projects</p>
+            <h2 class="admin-panel__title" id="listTitle">Published list</h2>
+          </div>
+          <div class="admin-panel__tools">
+            <button class="btn btn--accent btn--sm" type="button" id="newProject">+ Add project</button>
+            <button class="btn btn--ghost-navy btn--sm" type="button" id="exportData">Export</button>
+            <button class="btn btn--ghost-navy btn--sm" type="button" id="importData">Import</button>
+            <button class="btn btn--ghost-navy btn--sm" type="button" id="resetData">Reset</button>
+            <input type="file" id="importFile" accept=".json,application/json" hidden>
+          </div>
+        </div>
+
+        <div class="admin-status" id="storageStatus">
+          <span class="mono" id="storageText">Storage: —</span>
+          <span class="mono admin-status__state" id="stateText">State: published defaults</span>
+        </div>
+
+        <div class="admin-list" id="adminList"></div>
+      </section>
+
+      <!-- ===== Editor column ===== -->
+      <section class="admin-panel admin-panel--editor">
+        <div class="admin-panel__head">
+          <div>
+            <p class="eyebrow" id="editorEyebrow">New project</p>
+            <h2 class="admin-panel__title" id="editorTitle">Add to the grid</h2>
+          </div>
+        </div>
+
+        <form class="admin-form" id="projectForm" novalidate>
+          <div class="afield">
+            <label class="mono" for="p-title">Title *</label>
+            <input id="p-title" type="text" required placeholder="e.g. Kosovo Forest Information System (KFIS)">
+          </div>
+
+          <div class="afield">
+            <span class="mono">Categories * <em>(used by the public filters)</em></span>
+            <div class="acats" id="p-cats">
+              <label class="acat"><input type="checkbox" value="agriculture"><span>GIS &amp; Agriculture</span></label>
+              <label class="acat"><input type="checkbox" value="software"><span>Software Development</span></label>
+              <label class="acat"><input type="checkbox" value="cadastral"><span>Geodetic &amp; Cadastral Surveying</span></label>
+              <label class="acat"><input type="checkbox" value="forestry"><span>Forestry</span></label>
+            </div>
+          </div>
+
+          <div class="afield">
+            <label class="mono" for="p-desc">Short description *</label>
+            <textarea id="p-desc" rows="4" required placeholder="One or two sentences describing the project."></textarea>
+          </div>
+
+          <div class="afield-row">
+            <div class="afield">
+              <label class="mono" for="p-meta1">Meta — left</label>
+              <input id="p-meta1" type="text" placeholder="e.g. FAO / Ministry of Agriculture">
+            </div>
+            <div class="afield">
+              <label class="mono" for="p-meta2">Meta — right</label>
+              <input id="p-meta2" type="text" placeholder="e.g. 2018 / Web-GIS">
+            </div>
+          </div>
+
+          <div class="afield-row">
+            <div class="afield">
+              <label class="mono" for="p-badge">Image caption <em>(optional)</em></label>
+              <input id="p-badge" type="text" placeholder="e.g. KFIS — System">
+            </div>
+            <div class="aswitch-stack">
+              <label class="aswitch">
+                <input id="p-featured" type="checkbox">
+                <span class="aswitch__track" aria-hidden="true"></span>
+                <span class="aswitch__text mono">Featured — large card</span>
+              </label>
+              <label class="aswitch">
+                <input id="p-published" type="checkbox" checked>
+                <span class="aswitch__track" aria-hidden="true"></span>
+                <span class="aswitch__text mono">Published — visible on the site</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="afield">
+            <span class="mono">Project image</span>
+            <div class="aimage">
+              <div class="aimage__preview" id="imagePreview">
+                <span class="mono">No image</span>
+              </div>
+              <div class="aimage__controls">
+                <label class="btn btn--ghost-navy btn--sm">
+                  Upload image
+                  <input type="file" id="imageFile" accept="image/*" hidden>
+                </label>
+                <select id="imageLibrary" class="ainput" aria-label="Choose from site library">
+                  <option value="">Choose from site library…</option>
+                  <optgroup label="Projects">
+                    <option value="assets/img/projects/kfis.png">projects/kfis.png</option>
+                    <option value="assets/img/projects/kfis-cover.jpg">projects/kfis-cover.jpg</option>
+                    <option value="assets/img/projects/kaveko.jpg">projects/kaveko.jpg</option>
+                    <option value="assets/img/projects/farmer-payment-system.jpg">projects/farmer-payment-system.jpg</option>
+                    <option value="assets/img/projects/brezovica.jpg">projects/brezovica.jpg</option>
+                    <option value="assets/img/projects/soil-map.png">projects/soil-map.png</option>
+                    <option value="assets/img/projects/forest-management-plans.jpg">projects/forest-management-plans.jpg</option>
+                    <option value="assets/img/projects/cadastre-reconstruction.jpg">projects/cadastre-reconstruction.jpg</option>
+                    <option value="assets/img/projects/digital-maps.jpg">projects/digital-maps.jpg</option>
+                    <option value="assets/img/projects/urban-surveying.png">projects/urban-surveying.png</option>
+                    <option value="assets/img/projects/municipal-gis.jpg">projects/municipal-gis.jpg</option>
+                    <option value="assets/img/projects/drenas-expropriation.png">projects/drenas-expropriation.png</option>
+                    <option value="assets/img/projects/surveying-services.jpg">projects/surveying-services.jpg</option>
+                    <option value="assets/img/projects/farmer-register.jpg">projects/farmer-register.jpg</option>
+                    <option value="assets/img/projects/horticulture-system.jpg">projects/horticulture-system.jpg</option>
+                    <option value="assets/img/projects/property-tax-resurveying.png">projects/property-tax-resurveying.png</option>
+                  </optgroup>
+                  <optgroup label="Services / field">
+                    <option value="assets/img/services/orthophotos.jpg">services/orthophotos.jpg</option>
+                    <option value="assets/img/services/uav-ortho-1.png">services/uav-ortho-1.png</option>
+                    <option value="assets/img/services/uav-1.jpg">services/uav-1.jpg</option>
+                    <option value="assets/img/services/uav-2.jpg">services/uav-2.jpg</option>
+                    <option value="assets/img/services/uav-3.jpg">services/uav-3.jpg</option>
+                    <option value="assets/img/services/uav-pointcloud.png">services/uav-pointcloud.png</option>
+                    <option value="assets/img/services/uav-dem.png">services/uav-dem.png</option>
+                    <option value="assets/img/services/gis-development.png">services/gis-development.png</option>
+                    <option value="assets/img/services/surveying.png">services/surveying.png</option>
+                    <option value="assets/img/services/mapping-remote-sensing.jpg">services/mapping-remote-sensing.jpg</option>
+                    <option value="assets/img/services/agriculture-forestry.png">services/agriculture-forestry.png</option>
+                  </optgroup>
+                  <optgroup label="About / Airbus">
+                    <option value="assets/img/about/company-profile.jpg">about/company-profile.jpg</option>
+                    <option value="assets/img/about/airbus-intro.png">about/airbus-intro.png</option>
+                    <option value="assets/img/about/airbus-imagery.jpg">about/airbus-imagery.jpg</option>
+                  </optgroup>
+                  <optgroup label="Gallery">
+                    <option value="assets/img/gallery/026.jpeg">gallery/026.jpeg</option>
+                    <option value="assets/img/gallery/022.jpg">gallery/022.jpg</option>
+                    <option value="assets/img/gallery/020.jpg">gallery/020.jpg</option>
+                    <option value="assets/img/gallery/018.jpg">gallery/018.jpg</option>
+                    <option value="assets/img/gallery/017.jpg">gallery/017.jpg</option>
+                    <option value="assets/img/gallery/015.jpg">gallery/015.jpg</option>
+                    <option value="assets/img/gallery/007.jpg">gallery/007.jpg</option>
+                    <option value="assets/img/gallery/003.jpg">gallery/003.jpg</option>
+                  </optgroup>
+                </select>
+                <input id="imagePath" class="ainput" type="text" placeholder="…or paste an image path / URL">
+              </div>
+            </div>
+            <p class="ahint mono">Uploads are compressed and stored in this browser (localStorage). Paths to files in <em>assets/img/</em> are the lightest option.</p>
+          </div>
+
+          <div class="admin-form__actions">
+            <button class="btn btn--accent" type="submit" id="saveProject">Save project</button>
+            <button class="btn btn--ghost-navy" type="button" id="cancelEdit" hidden>Cancel edit</button>
+            <span class="admin-form__msg mono" id="formMsg" hidden></span>
+          </div>
+        </form>
+
+        <div class="admin-preview">
+          <div class="admin-preview__head">
+            <span class="mono">Card preview</span>
+            <span class="mono" id="previewCat">—</span>
+          </div>
+          <div class="admin-preview__stage" id="previewStage"></div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="admin-foot">
+    <div class="admin-foot__inner">
+      <span class="mono">Edits are stored in this browser. Use <strong>Export</strong> and replace <em>assets/js/projects-data.js</em> to publish for all visitors.</span>
+      <span class="mono">Geo&amp;Land Admin · 2026</span>
+    </div>
+  </footer>
+
+</div>
+
+<script src="assets/js/env.js"></script>
+<script src="assets/js/projects-data.js"></script>
+<script src="assets/js/projects-store.js"></script>
+<script src="assets/js/admin.js"></script>
+
+<script>
+window.addEventListener("load", function () {
+  setTimeout(function () {
+    var out = [];
+    out.push("LIB=" + (typeof window.supabase !== "undefined"));
+    out.push("EMAIL_WRAP_HIDDEN=" + document.getElementById("gateEmailWrap").hidden);
+    out.push("KEY_LABEL=" + document.getElementById("gateKeyLabel").textContent);
+    out.push("SUBMIT_LABEL=" + document.getElementById("gateSubmit").textContent);
+    out.push("NOTE_SUPABASE=" + (document.getElementById("gateNote").textContent.indexOf("Supabase") !== -1));
+    if (!document.getElementById("gateEmailWrap").hidden) {
+      document.getElementById("gateEmail").value = "admin@example.com";
+      document.getElementById("gateKey").value = "wrongpass123";
+      document.getElementById("gateForm").dispatchEvent(new Event("submit", { bubbles: true, cancelable: true }));
+      setTimeout(function () {
+        var err = document.getElementById("gateError");
+        out.push("ERROR_VISIBLE=" + (!err.hidden));
+        out.push("ERROR_TEXT=" + err.textContent.slice(0, 80));
+        var pre = document.createElement("pre"); pre.id = "testout"; pre.textContent = out.join("\n");
+        document.body.appendChild(pre);
+      }, 4000);
+    } else {
+      var pre = document.createElement("pre"); pre.id = "testout"; pre.textContent = out.join("\n");
+      document.body.appendChild(pre);
+    }
+  }, 800);
+});
+</script>
+</body>
+
+</html>

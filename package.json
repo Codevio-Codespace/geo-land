@@ -1,0 +1,10 @@
+{
+  "name": "geoland-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Geo&Land — static website with a Supabase-backed projects admin panel",
+  "scripts": {
+    "start": "node server.js",
+    "sync-env": "node scripts/sync-env.js"
+  }
+}

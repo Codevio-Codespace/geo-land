@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Geo&Land is one of the largest companies in South East Europe specialized in Geoinformation disciplines such as GIS, land administration, cadastre, agriculture and software development. Prishtina, Kosovo.">
+<title>Geo&Land — Geoinformation, GIS, Cadastre &amp; Agriculture | Prishtina, Kosovo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+<script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+<!-- ============ TOP UTILITY BAR ============ -->
+<div class="topbar" aria-hidden="false">
+  <div class="topbar__inner">
+    <div class="topbar__cell topbar__cell--brand">
+      <span class="topbar__brand">Geo&amp;Land</span>
+    </div>
+    <div class="topbar__cell topbar__cell--center">
+      <span>Geoinformation · Land Administration</span>
+      <span>Cadastre · GIS · Agriculture</span>
+    </div>
+    <div class="topbar__cell topbar__cell--right">
+      <span>Prishtina · Kosovo</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============ NAVIGATION ============ -->
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a class="nav__brand" href="#top">Geo&amp;Land</a>
+
+    <nav class="nav__menu" aria-label="Main">
+      <ul class="nav__list">
+        <li class="nav__item nav__item--has-drop">
+          <button class="nav__link nav__link--btn" type="button" aria-expanded="false" aria-haspopup="true">
+            About Us
+            <svg class="nav__caret" viewBox="0 0 8 5" aria-hidden="true"><path d="M1 1l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
+          </button>
+          <div class="nav__drop">
+            <a href="#company">Company Profile</a>
+            <a href="#about">Our Mission</a>
+            <a href="#company">Key Staff</a>
+            <a href="#company">Licenses &amp; Certificates</a>
+            <a href="#clients">Our Clients</a>
+          </div>
+        </li>
+        <li class="nav__item nav__item--has-drop">
+          <button class="nav__link nav__link--btn" type="button" aria-expanded="false" aria-haspopup="true">
+            Services
+            <svg class="nav__caret" viewBox="0 0 8 5" aria-hidden="true"><path d="M1 1l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
+          </button>
+          <div class="nav__drop">
+            <a href="#service-gis">GIS and Software Development</a>
+            <a href="#service-surveying">Surveying</a>
+            <a href="#service-mapping">Mapping and Remote Sensing</a>
+            <a href="#service-agriculture">Agriculture and Forestry</a>
+            <a href="#service-orthophotos">Orthophotos</a>
+            <a href="#service-uav">Aerial Data Collection – UAV Surveying</a>
+          </div>
+        </li>
+        <li class="nav__item nav__item--has-drop">
+          <button class="nav__link nav__link--btn" type="button" aria-expanded="false" aria-haspopup="true">
+            Projects
+            <svg class="nav__caret" viewBox="0 0 8 5" aria-hidden="true"><path d="M1 1l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
+          </button>
+          <div class="nav__drop">
+            <a href="#projects" data-project-filter="all">All Projects</a>
+            <a href="#projects" data-project-filter="agriculture">GIS and Agriculture</a>
+            <a href="#projects" data-project-filter="software">Software Development</a>
+            <a href="#projects" data-project-filter="cadastral">Geodetic and Cadastral Surveying</a>
+            <a href="#projects" data-project-filter="forestry">Forestry</a>
+          </div>
+        </li>
+        <li class="nav__item"><a class="nav__link" href="#software">Software</a></li>
+        <li class="nav__item"><a class="nav__link" href="#airbus">Airbus Group</a></li>
+      </ul>
+    </nav>
+
+    <div class="nav__actions">
+      <a class="btn btn--accent btn--sm" href="#contact">Contact Us</a>
+      <button class="nav__burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ MOBILE MENU ============ -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu__inner">
+    <div class="mobile-menu__group">
+      <button class="mobile-menu__toggle" type="button" aria-expanded="false">About Us</button>
+      <div class="mobile-menu__sub">
+        <a href="#company">Company Profile</a>
+        <a href="#about">Our Mission</a>
+        <a href="#company">Key Staff</a>
+        <a href="#company">Licenses &amp; Certificates</a>
+        <a href="#clients">Our Clients</a>
+      </div>
+    </div>
+    <div class="mobile-menu__group">
+      <button class="mobile-menu__toggle" type="button" aria-expanded="false">Services</button>
+      <div class="mobile-menu__sub">
+        <a href="#service-gis">GIS and Software Development</a>
+        <a href="#service-surveying">Surveying</a>
+        <a href="#service-mapping">Mapping and Remote Sensing</a>
+        <a href="#service-agriculture">Agriculture and Forestry</a>
+        <a href="#service-orthophotos">Orthophotos</a>
+        <a href="#service-uav">Aerial Data Collection – UAV Surveying</a>
+      </div>
+    </div>
+    <div class="mobile-menu__group">
+      <button class="mobile-menu__toggle" type="button" aria-expanded="false">Projects</button>
+      <div class="mobile-menu__sub">
+        <a href="#projects" data-project-filter="all">All Projects</a>
+        <a href="#projects" data-project-filter="agriculture">GIS and Agriculture</a>
+        <a href="#projects" data-project-filter="software">Software Development</a>
+        <a href="#projects" data-project-filter="cadastral">Geodetic and Cadastral Surveying</a>
+        <a href="#projects" data-project-filter="forestry">Forestry</a>
+      </div>
+    </div>
+    <a class="mobile-menu__direct" href="#software">Software</a>
+    <a class="mobile-menu__direct" href="#airbus">Airbus Group</a>
+    <a class="btn btn--accent mobile-menu__cta" href="#contact">Contact Us</a>
+  </div>
+</div>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero lined" data-grid aria-label="Introduction">
+    <div class="container">
+      <p class="eyebrow eyebrow--center" data-reveal>Geoinformation · GIS · Cadastre · Agriculture</p>
+      <h1 class="hero__title" data-reveal>
+        Geoinformation, land administration and&nbsp;cadastre — end&nbsp;to&nbsp;end.
+      </h1>
+      <p class="hero__sub" data-reveal>
+        Geo&amp;Land is one of the largest companies in South East Europe specialized in Geo&nbsp;disciplines —
+        GIS, land administration, cadastre, agriculture and software development.
+      </p>
+      <div class="hero__cta" data-reveal>
+        <a class="btn btn--accent" href="#services">
+          Explore our services
+          <svg class="btn__arrow" viewBox="0 0 12 10" aria-hidden="true"><path d="M1 5h9M7 1.5L10.5 5 7 8.5" fill="none" stroke="currentColor" stroke-width="1.3"/></svg>
+        </a>
+        <a class="btn btn--ghost" href="#projects">View projects</a>
+      </div>
+
+      <!-- Large visual area -->
+      <div class="hero__visual" data-reveal>
+        <div class="hero__mosaic">
+          <figure class="media-panel media-panel--wide">
+            <img src="assets/img/services/uav-ortho-1.png" alt="UAV orthophoto of vineyard rows in Rahovec, Kosovo" loading="eager">
+            <figcaption class="media-panel__tag media-panel__tag--tl">Orthophoto — Rahovec</figcaption>
+            <figcaption class="media-panel__tag media-panel__tag--br">UAV · 1 cm / px</figcaption>
+          </figure>
+          <figure class="media-panel media-panel--ui">
+            <img src="assets/img/projects/kfis.png" alt="Kosovo Forest Information System web-GIS interface" loading="lazy">
+            <figcaption class="media-panel__tag media-panel__tag--tl">KFIS — Web-GIS</figcaption>
+          </figure>
+          <figure class="media-panel media-panel--drone">
+            <img src="assets/img/services/uav-1.jpg" alt="Survey-grade UAV on a vineyard parcel in Kosovo" loading="lazy">
+            <figcaption class="media-panel__tag media-panel__tag--bl">UAV Survey</figcaption>
+          </figure>
+        </div>
+        <div class="hero__wordmark" aria-hidden="true">
+          <span class="hero__wordmark-text">Geo&amp;Land</span>
+          <span class="hero__wordmark-caption">GIS · Land Administration · Cadastre · Agriculture</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fact strip -->
+    <div class="factstrip">
+      <div class="container factstrip__grid">
+        <div class="factstrip__cell">
+          <span class="factstrip__label">Certified</span>
+          <span class="factstrip__value">ISO 9001:2008 — geodetic services, GIS &amp; software development</span>
+        </div>
+        <div class="factstrip__cell">
+          <span class="factstrip__label">Active in</span>
+          <span class="factstrip__value">Kosovo · Albania · North Macedonia</span>
+        </div>
+        <div class="factstrip__cell">
+          <span class="factstrip__label">AIRBUS</span>
+          <span class="factstrip__value">Authorized partner since 2013</span>
+        </div>
+        <div class="factstrip__cell">
+          <span class="factstrip__label">Clients</span>
+          <span class="factstrip__value">FAO · USAID · Deloitte · public institutions</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SERVICES ============ -->
+  <section class="section section--light lined" id="services" data-grid aria-label="Services">
+    <div class="container">
+      <div class="section__head">
+        <p class="eyebrow" data-reveal>Services — 01 / 06</p>
+        <h2 class="section__title" data-reveal>From the field to the database.</h2>
+        <p class="section__lead" data-reveal>
+          Surveying, mapping, GIS and software — delivered under ISO 9001:2008 certification and
+          licensed by the Kosovo Cadastral Agency and MAFRD.
+        </p>
+      </div>
+
+      <div class="services__layout">
+        <!-- Rail -->
+        <aside class="services__rail" data-reveal>
+          <a class="services__rail-item is-active" href="#service-gis" data-spy="service-gis"><span class="mono">01</span> GIS &amp; Software Development</a>
+          <a class="services__rail-item" href="#service-surveying" data-spy="service-surveying"><span class="mono">02</span> Surveying</a>
+          <a class="services__rail-item" href="#service-mapping" data-spy="service-mapping"><span class="mono">03</span> Mapping &amp; Remote Sensing</a>
+          <a class="services__rail-item" href="#service-agriculture" data-spy="service-agriculture"><span class="mono">04</span> Agriculture &amp; Forestry</a>
+          <a class="services__rail-item" href="#service-orthophotos" data-spy="service-orthophotos"><span class="mono">05</span> Orthophotos</a>
+          <a class="services__rail-item" href="#service-uav" data-spy="service-uav"><span class="mono">06</span> UAV Surveying</a>
+        </aside>
+
+        <!-- Rows -->
+        <div class="services__rows">
+
+          <article class="service-row" id="service-gis" data-reveal>
+            <header class="service-row__head">
+              <span class="service-row__index mono">01</span>
+              <h3 class="service-row__title">GIS and Software Development</h3>
+            </header>
+            <div class="service-row__body">
+              <p class="service-row__lead">
+                Geo&nbsp;components, geo infrastructures and Web-GIS systems across commercial and open
+                source platforms — from data acquisition to hosting and outsourcing.
+              </p>
+              <ul class="chips">
+                <li>Data acquisition &amp; digitisation</li>
+                <li>Data conversion / integration</li>
+                <li>GIS project management</li>
+                <li>System integration (EAI)</li>
+                <li>Web-GIS solutions</li>
+                <li>Desktop · Mobile GIS · LBS</li>
+                <li>Geo service servers</li>
+                <li>Data storage / DBMS</li>
+              </ul>
+              <p class="service-row__meta mono">Web-GIS systems for agriculture · forestry · local government</p>
+            </div>
+            <figure class="service-row__media media-panel">
+              <img src="assets/img/projects/kaveko.jpg" alt="Web-GIS interface of the Kaveko vineyard and wine application" loading="lazy">
+              <figcaption class="media-panel__tag media-panel__tag--tl">Web-GIS — Kaveko</figcaption>
+            </figure>
+          </article>
+
+          <article class="service-row" id="service-surveying" data-reveal>
+            <header class="service-row__head">
+              <span class="service-row__index mono">02</span>
+              <h3 class="service-row__title">Surveying</h3>
+            </header>
+            <div class="service-row__body">
+              <p class="service-row__lead">
+                Geodetic control networks, urban planning and engineering surveying for large
+                infrastructure — designed, established, processed and adjusted.
+              </p>
+              <ul class="chips">
+                <li>Geodetic control networks</li>
+                <li>Urban planning</li>
+                <li>Tunnels · railways · roads</li>
+                <li>Bridges · mining</li>
+                <li>Hydropower plants</li>
+                <li>Monitoring</li>
+              </ul>
+            </div>
+            <figure class="service-row__media media-panel media-panel--photo">
+              <img src="assets/img/services/surveying.png" alt="Geo&Land surveyors establishing a geodetic control network with GNSS equipment" loading="lazy">
+              <figcaption class="media-panel__tag media-panel__tag--bl">Field survey</figcaption>
+            </figure>
+          </article>
+
+          <article class="service-row" id="service-mapping" data-reveal>
+            <header class="service-row__head">
+              <span class="service-row__index mono">03</span>
+              <h3 class="service-row__title">Mapping and Remote Sensing</h3>
+            </header>
+            <div class="service-row__body">
+              <p class="service-row__lead">
+                Digital 2D and 3D mapping, satellite imagery interpretation and land cover analysis
+                for forestry, agriculture, mining and geology.
+              </p>
+              <ul class="chips">
+                <li>Digital 2D / 3D mapping</li>
+                <li>Mobile mapping</li>
+                <li>Forestry &amp; agriculture mapping</li>
+                <li>Mining &amp; geology mapping</li>
+                <li>Land cover &amp; land use maps</li>
+                <li>Watershed management</li>
+              </ul>
+            </div>
+            <figure class="service-row__media media-panel media-panel--photo">
+              <img src="assets/img/services/mapping-remote-sensing.jpg" alt="Road network mapping beside high-resolution satellite imagery of Kosovo" loading="lazy">
+              <figcaption class="media-panel__tag media-panel__tag--bl">Imagery interpretation</figcaption>
+            </figure>
+          </article>
+
+          <article class="service-row" id="service-agriculture" data-reveal>
+            <header class="service-row__head">
+              <span class="service-row__index mono">04</span>
+              <h3 class="service-row__title">Agriculture and Forestry</h3>
+            </header>
+            <div class="service-row__body">
+              <p class="service-row__lead">
+                Agriculture land registration, rural development and land consolidation — including
+                GIS-based registers and full agriculture and forestry inventories.
+              </p>
+              <ul class="chips">
+                <li>Agriculture land registration</li>
+                <li>Rural development</li>
+                <li>Land consolidation</li>
+                <li>Forestry inventory</li>
+                <li>GIS-based registers</li>
+                <li>Project management</li>
+              </ul>
+            </div>
+            <figure class="service-row__media media-panel media-panel--photo">
+              <img src="assets/img/services/agriculture-forestry.png" alt="Vineyards, fields and forested hills across Kosovo farmland" loading="lazy">
+              <figcaption class="media-panel__tag media-panel__tag--bl">Rahovec region</figcaption>
+            </figure>
+          </article>
+
+          <article class="service-row" id="service-orthophotos" data-reveal>
+            <header class="service-row__head">
+              <span class="service-row__index mono">05</span>
+              <h3 class="service-row__title">Orthophotos</h3>
+            </header>
+            <div class="service-row__body">
+              <p class="service-row__lead">
+                Aerial imagery and orthophotos for Kosovo, Albania and North Macedonia for
+                urban-spatial planning — with a GIS municipal portal for development plans.
+              </p>
+              <ul class="chips">
+                <li>Aerial imagery</li>
+                <li>Orthophoto production</li>
+                <li>Urban-spatial planning</li>
+                <li>GIS municipal portal</li>
+                <li>Development &amp; legalization plans</li>
+              </ul>
+            </div>
+            <figure class="service-row__media media-panel media-panel--photo">
+              <img src="assets/img/services/orthophotos.jpg" alt="True orthophoto of a Kosovo city produced from aerial imagery" loading="lazy">
+              <figcaption class="media-panel__tag media-panel__tag--bl">Orthophoto — city</figcaption>
+            </figure>
+          </article>
+
+          <article class="service-row" id="service-uav" data-reveal>
+            <header class="service-row__head">
+              <span class="service-row__index mono">06</span>
+              <h3 class="service-row__title">Aerial Data Collection – UAV Surveying</h3>
+            </header>
+            <div class="service-row__body">
+              <p class="service-row__lead">
+                Drone data collection with certified UAV operators — capturing, analysing, archiving
+                and distributing aerial data through web map services, up to UAV LiDAR at 1&nbsp;cm/pixel.
+              </p>
+              <ul class="chips">
+                <li>Mapping</li>
+                <li>Agriculture &amp; forestry</li>
+                <li>Mining &amp; volume calculation</li>
+                <li>Vegetation / crop diagnosis</li>
+                <li>Infrastructure &amp; utilities</li>
+                <li>Emergency &amp; disaster</li>
+              </ul>
+              <p class="service-row__meta mono">Deliverables — surveying · orthophoto · point cloud · DEM</p>
+            </div>
+            <figure class="service-row__media media-panel media-panel--photo">
+              <img src="assets/img/services/uav-pointcloud.png" alt="UAV point cloud with height profile over a vineyard parcel" loading="lazy">
+              <figcaption class="media-panel__tag media-panel__tag--bl">Point cloud — Hvar</figcaption>
+            </figure>
+          </article>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT (dark, image band) ============ -->
+  <section class="about lined" id="about" data-grid aria-label="About Geo&Land">
+    <div class="about__bg" aria-hidden="true">
+      <img src="assets/img/services/surveying.png" alt="">
+    </div>
+    <div class="container about__inner">
+      <p class="eyebrow" data-reveal>About Us</p>
+      <h2 class="about__title" data-reveal>One of the largest geoinformation companies in South East&nbsp;Europe.</h2>
+      <p class="about__text" data-reveal>
+        Geo&amp;Land has implemented many national projects in Kosovo — few of them carried out for
+        the first time in our country. We are trained and certified by prestigious standards and
+        institutions to offer high quality services with a qualified and diverse staff.
+      </p>
+      <div class="about__facts">
+        <div class="about__fact" data-reveal>
+          <span class="mono about__fact-label">Certified</span>
+          <p>ISO 9001:2008 for geodetic services, GIS and software development, as well as project management.</p>
+        </div>
+        <div class="about__fact" data-reveal>
+          <span class="mono about__fact-label">Licensed</span>
+          <p>By the Kosovo Cadastral Agency for cadastral and property rights services; by MAFRD for forest management plans.</p>
+        </div>
+        <div class="about__fact" data-reveal>
+          <span class="mono about__fact-label">Extended</span>
+          <p>Activities extended to Albania and North Macedonia in the field of agriculture and GIS.</p>
+        </div>
+      </div>
+      <p class="about__mission mono" data-reveal>
+        Innovative — Dedicated — Reliable
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ COMPANY / VALUES ============ -->
+  <section class="section section--light lined" id="company" aria-label="Company profile">
+    <div class="container">
+      <div class="section__head section__head--split">
+        <div>
+          <p class="eyebrow" data-reveal>Company Profile</p>
+          <h2 class="section__title section__title--md" data-reveal>The key to our success is our staff.</h2>
+        </div>
+        <p class="section__lead" data-reveal>
+          The hiring process is a highly competitive one. Our mission is to provide the highest
+          quality services — hiring and training our team in contemporary theories and business
+          practices to form lasting relationships with our clients.
+        </p>
+      </div>
+
+      <div class="cards">
+        <article class="card card--value" data-reveal>
+          <span class="mono card__index">01</span>
+          <h3 class="card__title">Innovative</h3>
+          <p class="card__text">We are creative and come up with innovative solutions to meet our clients’ needs.</p>
+        </article>
+        <article class="card card--value" data-reveal>
+          <span class="mono card__index">02</span>
+          <h3 class="card__title">Dedicated</h3>
+          <p class="card__text">Dedicated to our work and to our clients — from first survey to final delivery.</p>
+        </article>
+        <article class="card card--value" data-reveal>
+          <span class="mono card__index">03</span>
+          <h3 class="card__title">Reliable</h3>
+          <p class="card__text">Reliable in the services that we provide, with senior-level consultancy and R&amp;D behind every area.</p>
+        </article>
+        <article class="card card--value" data-reveal>
+          <span class="mono card__index">04</span>
+          <h3 class="card__title">Integrity</h3>
+          <p class="card__text">Integrity, collaboration, commitment and professionalism — the core values of our working environment.</p>
+        </article>
+      </div>
+
+      <div class="quote" data-reveal>
+        <p class="quote__text">
+          “Our mission is to provide the highest quality services in order to meet client needs.
+          Our business components lie in institutional development, training and knowledge transfer.”
+        </p>
+        <span class="quote__source mono">Our Mission — Geo&amp;Land</span>
+      </div>
+
+      <div class="clients" id="clients" data-reveal>
+        <p class="eyebrow">Our Clients</p>
+        <p class="clients__text">
+          The list of our clients reflects the range of our projects and the professionalism with
+          which we carry out the services. Throughout the years, we have collaborated with public
+          and private organizations across different industries.
+        </p>
+        <ul class="clients__row mono">
+          <li>FAO</li>
+          <li>USAID</li>
+          <li>Deloitte</li>
+          <li>Kosovo Forest Agency</li>
+          <li>Ministry of Agriculture</li>
+          <li>Municipality of Peja</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROJECTS ============ -->
+  <section class="section section--projects lined" id="projects" aria-label="Projects">
+    <div class="container">
+      <div class="section__head">
+        <p class="eyebrow" data-reveal>Projects — Selected Work</p>
+        <h2 class="section__title" data-reveal>National projects, carried out in&nbsp;Kosovo.</h2>
+        <p class="section__lead" data-reveal>
+          A look at our projects tells you why you should choose us — from national information
+          systems to expropriation, cadastre and forestry programmes.
+        </p>
+      </div>
+
+      <div class="filters" data-reveal>
+        <button class="filter is-active mono" type="button" data-filter="all">All</button>
+        <button class="filter mono" type="button" data-filter="agriculture">GIS &amp; Agriculture</button>
+        <button class="filter mono" type="button" data-filter="software">Software Development</button>
+        <button class="filter mono" type="button" data-filter="cadastral">Geodetic &amp; Cadastral Surveying</button>
+        <button class="filter mono" type="button" data-filter="forestry">Forestry</button>
+      </div>
+
+      <noscript>
+        <p class="projects__empty mono">Enable JavaScript to load the latest projects. Showing the published list below.</p>
+      </noscript>
+
+      <div class="projects" id="projectGrid">
+
+        <article class="project project--feature" data-category="software forestry" data-reveal>
+          <figure class="project__media media-panel">
+            <img src="assets/img/projects/kfis.png" alt="Kosovo Forest Information System interface with forest polygons over terrain" loading="lazy">
+            <figcaption class="media-panel__tag media-panel__tag--tl">KFIS — System</figcaption>
+          </figure>
+          <div class="project__body">
+            <div class="project__tags mono"><span>Software Development</span><span>Forestry</span></div>
+            <h3 class="project__title">Kosovo Forest Information System (KFIS)</h3>
+            <p class="project__text">
+              Design, development, installation, delivery and after-sales service of a permanent IT
+              system for forestry in Kosovo, in a project with the Food and Agriculture Organization
+              of the United Nations.
+            </p>
+            <div class="project__meta mono"><span>FAO</span><span>Web-GIS · System</span></div>
+          </div>
+        </article>
+
+        <article class="project" data-category="software agriculture" data-reveal>
+          <figure class="project__media media-panel">
+            <img src="assets/img/projects/farmer-payment-system.jpg" alt="Electronic Farmer Register and payment system screens" loading="lazy">
+          </figure>
+          <div class="project__body">
+            <div class="project__tags mono"><span>Software Development</span><span>GIS &amp; Agriculture</span></div>
+            <h3 class="project__title">National Farmer and Payment System (SPFN)</h3>
+            <p class="project__text">
+              Web-based application for farmer register and grant management of Kosovo, built on open
+              standards — HTML5, JQuery, JQuery UI and jqGrid.
+            </p>
+            <div class="project__meta mono"><span>Ministry of Agriculture</span></div>
+          </div>
+        </article>
+
+        <article class="project" data-category="software agriculture" data-reveal>
+          <figure class="project__media media-panel">
+            <img src="assets/img/projects/kaveko.jpg" alt="Kosovo Vineyard Cadastre and Wine Quality Control System interface" loading="lazy">
+          </figure>
+          <div class="project__body">
+            <div class="project__tags mono"><span>Software Development</span></div>
+            <h3 class="project__title">Kosovo Vineyard Cadastre &amp; Wine Quality Control System (SVV v.1.3)</h3>
+            <p class="project__text">
+              A unique application for vineyards and wines, developed for the maintenance, expansion
+              and enhancement of the vineyards and wine industry in the vineyard region of Kosovo.
+            </p>
+            <div class="project__meta mono"><span>Ministry of Agriculture</span></div>
+          </div>
+        </article>
+
+        <article class="project" data-category="cadastral" data-reveal>
+          <figure class="project__media media-panel">
+            <img src="assets/img/projects/brezovica.jpg" alt="Expropriation map and property table for the Brezovica Ski Resort area" loading="lazy">
+          </figure>
+          <div class="project__body">
+            <div class="project__tags mono"><span>Geodetic &amp; Cadastral Surveying</span></div>
+            <h3 class="project__title">Expropriation Project for Brezovica Ski Resort</h3>
+            <p class="project__text">
+              In July 2013, Geo&amp;Land was contracted by Deloitte/USAID to implement the land
+              expropriation process across 3,000&nbsp;ha of the Brezovica Resort.
+            </p>
+            <div class="project__meta mono"><span>Deloitte / USAID</span><span>3,000 ha</span></div>
+          </div>
+        </article>
+
+        <article class="project" data-category="agriculture" data-reveal>
+          <figure class="project__media media-panel">
+            <img src="assets/img/projects/soil-map.png" alt="Soil profile photographs used in the Rahovec soil map" loading="lazy">
+          </figure>
+          <div class="project__body">
+            <div class="project__tags mono"><span>GIS &amp; Agriculture</span></div>
+            <h3 class="project__title">Creation of Soil Map</h3>
+            <p class="project__text">
+              Geo&amp;Land is part of a consortium for the creation of the soil map of the
+              Municipality of Rahovec — a project in its initial phase.
+            </p>
+            <div class="project__meta mono"><span>Municipality of Rahovec</span><span>2018</span></div>
+          </div>
+        </article>
+
+        <article class="project" data-category="forestry" data-reveal>
+          <figure class="project__media media-panel">
+            <img src="assets/img/projects/forest-management-plans.jpg" alt="Forest management plan maps and forest inventory data" loading="lazy">
+          </figure>
+          <div class="project__body">
+            <div class="project__tags mono"><span>Forestry</span></div>
+            <h3 class="project__title">Development of Management Plans for Forestry</h3>
+            <p class="project__text">
+              Research on existing forest plots and digitalisation of forest data, developing
+              long-term management plans with the Kosovo Forest Agency.
+            </p>
+            <div class="project__meta mono"><span>Kosovo Forest Agency</span></div>
+          </div>
+        </article>
+
+        <article class="project" data-category="cadastral" data-reveal>
+          <figure class="project__media media-panel">
+            <img src="assets/img/projects/cadastre-reconstruction.jpg" alt="Cadastral reconstruction survey over a cadastral zone" loading="lazy">
+          </figure>
+          <div class="project__body">
+            <div class="project__tags mono"><span>Geodetic &amp; Cadastral Surveying</span></div>
+            <h3 class="project__title">Cadastre Reconstruction</h3>
+            <p class="project__text">
+              Updating the cadastral database with actual information regarding inventory and
+              property across five cadastral zones.
+            </p>
+            <div class="project__meta mono"><span>Cadastral zones · 5</span></div>
+          </div>
+        </article>
+
+        <article class="project" data-category="cadastral" data-reveal>
+          <figure class="project__media media-panel">
+            <img src="assets/img/projects/digital-maps.jpg" alt="Digital map of water meters created through GPS measurement" loading="lazy">
+          </figure>
+          <div class="project__body">
+            <div class="project__tags mono"><span>Geodetic &amp; Cadastral Surveying</span></div>
+            <h3 class="project__title">Creation of Digital Maps for GIS Advancement</h3>
+            <p class="project__text">
+              Measuring all water meters through GPS technology and creating a digital map for GIS
+              advancement.
+            </p>
+            <div class="project__meta mono"><span>Municipal utilities</span></div>
+          </div>
+        </article>
+
+        <article class="project" data-category="cadastral" data-reveal>
+          <figure class="project__media media-panel">
+            <img src="assets/img/projects/urban-surveying.png" alt="Land surveying for urban planning in Prishtina" loading="lazy">
+          </figure>
+          <div class="project__body">
+            <div class="project__tags mono"><span>Geodetic &amp; Cadastral Surveying</span></div>
+            <h3 class="project__title">Land Surveying for Urban Planning</h3>
+            <p class="project__text">
+              Implementation of land surveying in urban zones of Prishtina, including data
+              collection for infrastructure and digital mapping.
+            </p>
+            <div class="project__meta mono"><span>Prishtina</span><span>2017</span></div>
+          </div>
+        </article>
+
+        <article class="project" data-category="software" data-reveal>
+          <figure class="project__media media-panel">
+            <img src="assets/img/projects/municipal-gis.jpg" alt="Municipal GIS System for the Municipality of Peja" loading="lazy">
+          </figure>
+          <div class="project__body">
+            <div class="project__tags mono"><span>Software Development</span></div>
+            <h3 class="project__title">Municipal GIS System</h3>
+            <p class="project__text">
+              One of the first municipal GIS systems in Kosovo — a database with geospatial and
+              textual data presented together.
+            </p>
+            <div class="project__meta mono"><span>Municipality of Peja</span></div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FIELD BAND (visual section) ============ -->
+  <section class="fieldband lined" aria-label="In the field" data-grid>
+    <div class="fieldband__bg" aria-hidden="true">
+      <img src="assets/img/services/uav-3.jpg" alt="">
+    </div>
+    <div class="container fieldband__inner">
+      <div class="fieldband__labels mono" aria-hidden="true">
+        <span>Field Operations</span>
+        <span>Kosovo · 42.6629° N, 21.1655° E</span>
+      </div>
+      <div class="fieldband__content" data-reveal>
+        <p class="eyebrow">Aerial Data Collection</p>
+        <h2 class="fieldband__title">Certified UAV operators, from capture to web&nbsp;map&nbsp;services.</h2>
+        <p class="fieldband__text">
+          Our operators control the process of data capture, analysis, archival and distribution —
+          delivering aerial data quickly and cost-effectively for mapping, agriculture, forestry,
+          mining, infrastructure and emergency response.
+        </p>
+        <a class="btn btn--ghost" href="#service-uav">Explore UAV surveying</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SOFTWARE ============ -->
+  <section class="section section--dark lined" id="software" data-grid aria-label="Software">
+    <div class="container">
+      <div class="section__head section__head--split">
+        <div>
+          <p class="eyebrow" data-reveal>Software — Systems</p>
+          <h2 class="section__title section__title--md" data-reveal>Systems we designed, built and operate.</h2>
+        </div>
+        <p class="section__lead" data-reveal>
+          The software development department is rising rapidly, taking into account trade
+          development and INSPIRE directives — across commercial and open source platforms.
+        </p>
+      </div>
+
+      <div class="software__grid">
+        <article class="software-card" data-reveal>
+          <div class="software-card__head">
+            <span class="mono software-card__code">SYS / 01</span>
+            <span class="mono software-card__cat">Forestry</span>
+          </div>
+          <h3 class="software-card__title">Kosovo Forest Information System (KFIS)</h3>
+          <p class="software-card__text">
+            A permanent IT system for forestry in Kosovo, built with the Food and Agriculture
+            Organization of the United Nations.
+          </p>
+          <figure class="software-card__media media-panel">
+            <img src="assets/img/projects/kfis.png" alt="KFIS application interface" loading="lazy">
+          </figure>
+        </article>
+
+        <article class="software-card" data-reveal>
+          <div class="software-card__head">
+            <span class="mono software-card__code">SYS / 02</span>
+            <span class="mono software-card__cat">Vineyards &amp; Wine</span>
+          </div>
+          <h3 class="software-card__title">Vineyard Cadastre &amp; Wine Quality Control (SVV v.1.3)</h3>
+          <p class="software-card__text">
+            A unique application for vineyards and wines, part of the project for maintenance,
+            expansion and enhancement of the wine industry in Kosovo.
+          </p>
+          <figure class="software-card__media media-panel">
+            <img src="assets/img/projects/kaveko.jpg" alt="SVV Kaveko application interface" loading="lazy">
+          </figure>
+        </article>
+
+        <article class="software-card" data-reveal>
+          <div class="software-card__head">
+            <span class="mono software-card__code">SYS / 03</span>
+            <span class="mono software-card__cat">Farmer Register</span>
+          </div>
+          <h3 class="software-card__title">Electronic Farmer Register (SPFN)</h3>
+          <p class="software-card__text">
+            A responsive, high-performance register running across different browsers and devices —
+            HTML5, JQuery, JQuery UI and jqGrid.
+          </p>
+          <figure class="software-card__media media-panel">
+            <img src="assets/img/projects/farmer-payment-system.jpg" alt="Electronic Farmer Register interface" loading="lazy">
+          </figure>
+        </article>
+
+        <article class="software-card" data-reveal>
+          <div class="software-card__head">
+            <span class="mono software-card__code">SYS / 04</span>
+            <span class="mono software-card__cat">Local Government</span>
+          </div>
+          <h3 class="software-card__title">Municipal GIS System</h3>
+          <p class="software-card__text">
+            Geospatial and textual data presented together in one system — among the first
+            municipal GIS systems realised in Kosovo.
+          </p>
+          <figure class="software-card__media media-panel">
+            <img src="assets/img/projects/municipal-gis.jpg" alt="Municipal GIS System interface" loading="lazy">
+          </figure>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ AIRBUS ============ -->
+  <section class="airbus lined" id="airbus" data-grid aria-label="Airbus Group partnership">
+    <div class="container">
+      <div class="airbus__grid">
+        <div class="airbus__content">
+          <p class="eyebrow" data-reveal>Airbus Group — Partnership</p>
+          <h2 class="airbus__title" data-reveal>Authorized partner of AIRBUS since&nbsp;2013.</h2>
+          <p class="airbus__text" data-reveal>
+            Geo&amp;Land proudly holds a partnership agreement with AIRBUS — covering the promotion,
+            distribution and use of AIRBUS products and services, from satellite and aerial optical
+            imagery to radar data, including Agriculture Satellite Monitoring Services and OneAtlas.
+            Geo&amp;Land continues to be the only partner of AIRBUS for the Republic of Kosovo,
+            Croatia, Albania and North Macedonia.
+          </p>
+          <ul class="chips chips--dark" data-reveal>
+            <li>Optical &amp; radar data</li>
+            <li>Agriculture satellite monitoring</li>
+            <li>OneAtlas</li>
+            <li>Imagery services</li>
+          </ul>
+          <a class="btn btn--ghost" href="https://www.intelligence-airbusds.com/" target="_blank" rel="noopener">Airbus Defence &amp; Space</a>
+        </div>
+        <div class="airbus__media" data-reveal>
+          <figure class="media-panel">
+            <img src="assets/img/about/airbus-intro.png" alt="Satellite imagery products — optical and radar data from Airbus" loading="lazy">
+            <figcaption class="media-panel__tag media-panel__tag--tl">AIRBUS — Imagery</figcaption>
+            <figcaption class="media-panel__tag media-panel__tag--br">Optical · Radar</figcaption>
+          </figure>
+          <figure class="media-panel media-panel--cert">
+            <img src="assets/img/about/airbus-partner.jpg" alt="AIRBUS authorized partner certificate" loading="lazy">
+            <figcaption class="media-panel__tag media-panel__tag--bl">Authorized Partner</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT / CTA ============ -->
+  <section class="cta lined" id="contact" data-grid aria-label="Contact">
+    <div class="container">
+      <div class="cta__head">
+        <p class="eyebrow eyebrow--light" data-reveal>Start a Project</p>
+        <h2 class="cta__title" data-reveal>Let’s put your project on the&nbsp;map.</h2>
+        <p class="cta__sub" data-reveal>
+          From single surveys to national systems — talk to the team behind Kosovo’s land,
+          forest and agriculture registries.
+        </p>
+        <div class="cta__buttons" data-reveal>
+          <a class="btn btn--paper" href="mailto:info@geoland-kosova.com">
+            info@geoland-kosova.com
+            <svg class="btn__arrow" viewBox="0 0 12 10" aria-hidden="true"><path d="M1 5h9M7 1.5L10.5 5 7 8.5" fill="none" stroke="currentColor" stroke-width="1.3"/></svg>
+          </a>
+          <a class="btn btn--ghost-light" href="tel:+38338739193">+383 38 739 193</a>
+        </div>
+      </div>
+
+      <div class="cta__grid">
+        <div class="cta__cell" data-reveal>
+          <span class="mono cta__label">Address 1</span>
+          <p>Street “Bardhyl Çaushi”<br>Ob.C15/11 No.07<br>10000 Prishtina, Kosovo</p>
+        </div>
+        <div class="cta__cell" data-reveal>
+          <span class="mono cta__label">Address 2</span>
+          <p>Street “Qamil Hoxha” No.5<br>10000 Prishtina, Kosovo</p>
+        </div>
+        <div class="cta__cell" data-reveal>
+          <span class="mono cta__label">Phone / Mobile</span>
+          <p><a href="tel:+38338739193">+383 38 739 193</a><br><a href="tel:+38344224853">+383 44 224 853</a></p>
+        </div>
+        <div class="cta__cell" data-reveal>
+          <span class="mono cta__label">Email</span>
+          <p><a href="mailto:info@geoland-kosova.com">info@geoland-kosova.com</a></p>
+        </div>
+      </div>
+
+      <form class="cta__form" id="contactForm" data-reveal>
+        <div class="cta__form-grid">
+          <div class="field">
+            <label class="mono" for="f-name">Name *</label>
+            <input id="f-name" name="name" type="text" required>
+          </div>
+          <div class="field">
+            <label class="mono" for="f-email">Email *</label>
+            <input id="f-email" name="email" type="email" required>
+          </div>
+          <div class="field field--full">
+            <label class="mono" for="f-subject">Subject *</label>
+            <input id="f-subject" name="subject" type="text" required>
+          </div>
+          <div class="field field--full">
+            <label class="mono" for="f-message">Message *</label>
+            <textarea id="f-message" name="message" rows="5" required></textarea>
+          </div>
+        </div>
+        <div class="cta__form-actions">
+          <button class="btn btn--paper" type="submit">Send Email</button>
+          <span class="cta__form-note">All fields with an asterisk (*) are required.</span>
+        </div>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer lined" data-grid>
+  <div class="container">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <span class="footer__wordmark">Geo&amp;Land</span>
+        <p class="footer__desc">
+          One of the largest companies in South East Europe specialized in Geoinformation
+          disciplines — GIS, land administration, cadastre, agriculture and software development.
+        </p>
+        <div class="footer__qr">
+          <img src="assets/img/about/scan.png" alt="QR code to connect with Geo&Land" loading="lazy">
+          <span class="mono">Scan to connect</span>
+        </div>
+      </div>
+
+      <nav class="footer__col" aria-label="Footer navigation">
+        <span class="footer__heading mono">Navigation</span>
+        <a href="#top">Home</a>
+        <a href="#about">About Us</a>
+        <a href="#services">Services</a>
+        <a href="#projects">Projects</a>
+        <a href="#software">Software</a>
+        <a href="#airbus">Airbus Group</a>
+        <a href="#contact">Contact Us</a>
+      </nav>
+
+      <nav class="footer__col" aria-label="Footer services">
+        <span class="footer__heading mono">Services</span>
+        <a href="#service-gis">GIS and Software Development</a>
+        <a href="#service-surveying">Surveying</a>
+        <a href="#service-mapping">Mapping and Remote Sensing</a>
+        <a href="#service-agriculture">Agriculture and Forestry</a>
+        <a href="#service-orthophotos">Orthophotos</a>
+        <a href="#service-uav">Aerial Data Collection – UAV</a>
+      </nav>
+
+      <div class="footer__col">
+        <span class="footer__heading mono">Contact</span>
+        <p>Street “Bardhyl Çaushi” Ob.C15/11 No.07<br>10000 Prishtina, Kosovo</p>
+        <p>Street “Qamil Hoxha” No.5<br>10000 Prishtina, Kosovo</p>
+        <p><a href="tel:+38338739193">+383 38 739 193</a><br><a href="tel:+38344224853">+383 44 224 853</a></p>
+        <p><a href="mailto:info@geoland-kosova.com">info@geoland-kosova.com</a></p>
+        <div class="footer__social">
+          <a class="mono" href="https://www.facebook.com/pages/GeoLand/127476490650224" target="_blank" rel="noopener">Facebook</a>
+          <a class="mono" href="https://twitter.com/geoandland" target="_blank" rel="noopener">Twitter</a>
+          <a class="mono" href="https://www.linkedin.com/company/geo%26land" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <span class="mono">Copyright © 2026 Geo&amp;Land - Kosova. All Rights Reserved.</span>
+      <span class="footer__bottom-right">
+        <a class="mono footer__admin" href="admin.html">Admin</a>
+        <span class="mono">Prishtina · Kosovo</span>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/env.js"></script>
+<script src="assets/js/projects-data.js"></script>
+<script src="assets/js/projects-store.js"></script>
+<script src="assets/js/main.js"></script>
+
+<script>
+window.addEventListener("load", function () {
+  setTimeout(function () {
+    var out = [];
+    out.push("CARDS=" + document.querySelectorAll("#projectGrid .project").length);
+    out.push("FIRST=" + (document.querySelector("#projectGrid .project__title") || {}).textContent);
+    out.push("CACHE=" + !!localStorage.getItem("geoland.projects.cache.v1"));
+    var pre = document.createElement("pre"); pre.id = "testout"; pre.textContent = out.join("\n");
+    document.body.appendChild(pre);
+  }, 5000);
+});
+</script>
+</body>
+
+</html>
