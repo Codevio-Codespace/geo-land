@@ -11,6 +11,11 @@
     item.classList.toggle('is-open', open);
     const head = item.querySelector('.svc__head');
     if (head) head.setAttribute('aria-expanded', String(open));
+    const panel = item.querySelector('.svc-panel');
+    if (panel) {
+      panel.toggleAttribute('inert', !open);
+      panel.setAttribute('aria-hidden', String(!open));
+    }
   };
 
   heads.forEach((head, i) => {
@@ -28,6 +33,8 @@
       if (e.key === 'Escape') setOpen(items[i], false);
     });
   });
+
+  items.forEach((item) => setOpen(item, item.classList.contains('is-open')));
 
   const fromHash = () => {
     const id = window.location.hash.slice(1);

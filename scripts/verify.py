@@ -81,12 +81,37 @@ with sync_playwright() as p:
     check('projects filter count', page.locator('#proj-count').inner_text() == '2')
     visible = page.locator('.proj-row:visible').count()
     check('projects visible rows', visible == 2, f'{visible} visible')
+    page.evaluate('window.scrollTo(0, 1800)')
+    page.wait_for_timeout(300)
     page.locator('.proj-row:visible').first.click()
     page.wait_for_timeout(350)
     check('projects dialog opens', page.locator('#project-dialog[open]').count() == 1)
+    rect = page.evaluate("""() => {
+        const d = document.getElementById('project-dialog');
+        const r = d.getBoundingClientRect();
+        return { top: Math.round(r.top), bottom: Math.round(r.bottom), vh: window.innerHeight };
+    }""")
+    check('projects dialog in viewport when scrolled', rect['top'] >= -1 and rect['bottom'] <= rect['vh'] + 1, str(rect))
     page.keyboard.press('Escape')
     page.wait_for_timeout(250)
     check('projects dialog closes on Esc', page.locator('#project-dialog[open]').count() == 0)
+
+    page.goto(f'{BASE}/technology.html', wait_until='networkidle')
+    page.wait_for_timeout(400)
+    page.locator('[data-lightbox="uav-ortho"]').first.scroll_into_view_if_needed()
+    page.wait_for_timeout(300)
+    page.locator('[data-lightbox="uav-ortho"]').first.click()
+    page.wait_for_timeout(350)
+    check('lightbox opens', page.locator('.lightbox[open]').count() == 1)
+    rect = page.evaluate("""() => {
+        const d = document.querySelector('.lightbox');
+        const r = d.getBoundingClientRect();
+        return { top: Math.round(r.top), bottom: Math.round(r.bottom), vh: window.innerHeight };
+    }""")
+    check('lightbox in viewport when scrolled', rect['top'] >= -1 and rect['bottom'] <= rect['vh'] + 1, str(rect))
+    page.keyboard.press('Escape')
+    page.wait_for_timeout(250)
+    check('lightbox closes on Esc', page.locator('.lightbox[open]').count() == 0)
 
     page.goto(f'{BASE}/contact.html', wait_until='networkidle')
     page.wait_for_timeout(400)

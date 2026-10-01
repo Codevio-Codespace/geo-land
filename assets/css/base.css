@@ -16,7 +16,7 @@
   --muted: #56605a;
   --muted-dark: #9aa8a0;
   --line: rgba(6, 18, 14, .16);
-  --line-strong: rgba(6, 18, 14, .32);
+  --line-strong: rgba(6, 18, 14, .55);
   --line-dark: rgba(244, 245, 240, .18);
 
   --font-display: "Schibsted Grotesk", "Segoe UI", sans-serif;
@@ -45,6 +45,7 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 * { margin: 0; }
+dialog[open] { position: fixed; inset: 0; margin: auto; }
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 html:focus-within { scroll-behavior: smooth; }
 body {
@@ -99,9 +100,9 @@ hr { border: 0; border-top: var(--hairline); }
 .container { max-width: var(--container); margin-inline: auto; padding-inline: var(--gutter); }
 .mono {
   font-family: var(--font-mono);
-  font-size: .72rem;
+  font-size: .75rem;
   font-weight: 500;
-  letter-spacing: .08em;
+  letter-spacing: .07em;
   text-transform: uppercase;
   line-height: 1.5;
 }

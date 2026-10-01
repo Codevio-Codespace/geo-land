@@ -280,7 +280,7 @@
   rows.forEach((row) => list.appendChild(row));
 
   const filterButtons = Array.from(document.querySelectorAll('.filters button'));
-  const applyFilter = (filter) => {
+  const applyFilter = (filter, announce = true) => {
     let visible = 0;
     rows.forEach((row) => {
       const show = filter === 'all' || row.dataset.cat === filter;
@@ -288,7 +288,7 @@
       if (show) visible += 1;
     });
     countEl.textContent = String(visible);
-    status.textContent = visible + ' projects shown';
+    if (announce) status.textContent = visible + ' projects shown';
     filterButtons.forEach((b) => {
       const active = b.dataset.filter === filter;
       b.classList.toggle('is-active', active);
@@ -296,7 +296,13 @@
     });
   };
   filterButtons.forEach((b) => {
-    b.addEventListener('click', () => applyFilter(b.dataset.filter));
+    b.addEventListener('click', () => {
+      applyFilter(b.dataset.filter);
+      const url = new URL(window.location.href);
+      if (b.dataset.filter === 'all') url.searchParams.delete('filter');
+      else url.searchParams.set('filter', b.dataset.filter);
+      history.replaceState(null, '', url);
+    });
   });
 
   const openProject = (project) => {
@@ -348,5 +354,7 @@
     list.addEventListener('mouseleave', () => peek.classList.remove('is-visible'));
   }
 
-  applyFilter('all');
+  const params = new URLSearchParams(window.location.search);
+  const initial = params.get('filter');
+  applyFilter(initial && (initial === 'all' || CATS[initial]) ? initial : 'all', false);
 })();

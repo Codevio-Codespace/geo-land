@@ -19,6 +19,7 @@
 
     const setOpen = (open) => {
       toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
       drawer.classList.toggle('is-open', open);
       document.body.classList.toggle('nav-open', open);
       if (open) {
