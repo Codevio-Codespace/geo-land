@@ -11,18 +11,19 @@ def ratio(a, b):
     return (hi + 0.05) / (lo + 0.05)
 
 PAIRS = [
-    ('muted on paper', '#56605a', '#f4f5f0'),
-    ('muted on paper2', '#56605a', '#e8eae2'),
-    ('orange-2 on paper', '#d96700', '#f4f5f0'),
-    ('orange on ink', '#f87800', '#06120e'),
-    ('muted-dark on ink', '#9aa8a0', '#06120e'),
-    ('paper on ink', '#f4f5f0', '#06120e'),
-    ('ink on paper', '#06120e', '#f4f5f0'),
-    ('orange on paper', '#f87800', '#f4f5f0'),
-    ('ink on orange', '#06120e', '#f87800'),
-    ('paper on orange', '#f4f5f0', '#f87800'),
-    ('green-2 links on paper', '#0a5c5a', '#f4f5f0'),
-    ('sage on ink', '#c8d8d0', '#06120e'),
+    ('muted on paper', '#46585e', '#e4eef0'),
+    ('muted on paper2', '#46585e', '#d9e4e8'),
+    ('orange-2 on paper', '#b84000', '#e4eef0'),
+    ('orange on ink', '#ff5b04', '#16232a'),
+    ('muted-dark on ink', '#9fb2b8', '#16232a'),
+    ('paper on ink', '#e4eef0', '#16232a'),
+    ('ink on paper', '#16232a', '#e4eef0'),
+    ('orange on paper', '#ff5b04', '#e4eef0'),
+    ('ink on orange', '#16232a', '#ff5b04'),
+    ('paper on orange', '#e4eef0', '#ff5b04'),
+    ('green-2 links on paper', '#0a5f64', '#e4eef0'),
+    ('sage on ink', '#a8c1c6', '#16232a'),
+    ('ink on orange-hover', '#16232a', '#ff6e1f'),
 ]
 for name, fg, bg in PAIRS:
     r = ratio(fg, bg)

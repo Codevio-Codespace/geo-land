@@ -1,23 +1,23 @@
 /* GeoLand Kosova — base: tokens, reset, typography, utilities */
 
 :root {
-  --ink: #06120e;
-  --ink-2: #0b1d18;
-  --ink-3: #123229;
-  --green: #004820;
-  --green-2: #0a5c5a;
-  --orange: #f87800;
-  --orange-2: #a94f00;
-  --orange-hover: #e06e00;
-  --paper: #f4f5f0;
-  --paper-2: #e8eae2;
-  --paper-3: #dde0d5;
-  --sage: #c8d8d0;
-  --muted: #56605a;
-  --muted-dark: #9aa8a0;
-  --line: rgba(6, 18, 14, .16);
-  --line-strong: rgba(6, 18, 14, .55);
-  --line-dark: rgba(244, 245, 240, .18);
+  --ink: #16232a;
+  --ink-2: #1b2c35;
+  --ink-3: #243842;
+  --green: #075056;
+  --green-2: #0a5f64;
+  --orange: #ff5b04;
+  --orange-2: #b84000;
+  --orange-hover: #ff6e1f;
+  --paper: #e4eef0;
+  --paper-2: #d9e4e8;
+  --paper-3: #cbd9dd;
+  --sage: #a8c1c6;
+  --muted: #46585e;
+  --muted-dark: #9fb2b8;
+  --line: rgba(22, 35, 42, .16);
+  --line-strong: rgba(22, 35, 42, .55);
+  --line-dark: rgba(228, 238, 240, .18);
 
   --font-display: "Schibsted Grotesk", "Segoe UI", sans-serif;
   --font-body: "Instrument Sans", "Segoe UI", sans-serif;

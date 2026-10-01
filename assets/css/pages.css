@@ -158,7 +158,7 @@
 .airbus-band .table-scroll { border-color: var(--line-dark); }
 .airbus-band .table-scroll th { color: var(--muted-dark); }
 .airbus-band .table-scroll th, .airbus-band .table-scroll td { border-color: var(--line-dark); }
-.airbus-band .table-scroll tbody tr:hover { background: rgba(244, 245, 240, .05); }
+.airbus-band .table-scroll tbody tr:hover { background: rgba(228, 238, 240, .05); }
 .airbus-band__caption { color: var(--muted-dark); font-size: .82rem; }
 .monitor-list { display: grid; border-top: 1px solid var(--line-dark); }
 .monitor-list div { display: grid; grid-template-columns: 12rem 1fr; gap: var(--s-5); padding: var(--s-4) 0; border-bottom: 1px solid var(--line-dark); }

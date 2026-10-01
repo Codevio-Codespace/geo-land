@@ -9,18 +9,22 @@ Precise · technical · regional (Kosovo/Balkans) · established · understated.
 ## Anti-references
 Dark-neon SaaS, purple gradients, glassmorphism, glowing blobs, stock-photo grids, oversized slogan typography, hover-everything animation.
 
-## Palette (sampled from the GeoLand logo)
+## Palette (provided brand palette)
 | Token | Value | Role |
 |---|---|---|
-| `--ink` | `#06120e` | text, dark bands, footer |
-| `--green` / `--green-2` | `#004820` / `#0a5c5a` | links hover, wordmark, secondary accents |
-| `--orange` | `#f87800` | brand accent: CTAs, markers, dark-section highlights |
-| `--orange-2` / `--orange-hover` | `#a94f00` / `#e06e00` | accessible text accents on light (5.04:1); hover fills |
-| `--paper` / `--paper-2` / `--paper-3` | `#f4f5f0` / `#e8eae2` / `#dde0d5` | light surfaces, alternating bands |
-| `--sage` | `#c8d8d0` | contour lines, quiet backgrounds |
-| `--muted` / `--muted-dark` | `#56605a` / `#9aa8a0` | secondary text on light / dark |
+| `--ink` (Mirage) | `#16232a` | text, dark bands, footer |
+| `--green` / `--green-2` (Deep Sea Green) | `#075056` / `#0a5f64` | links hover, wordmark, secondary accents, contour lines |
+| `--orange` (Blaze Orange) | `#ff5b04` | brand accent: CTAs, markers, dark-section highlights |
+| `--orange-2` | `#b84000` | accessible text orange on light (4.72:1) |
+| `--orange-hover` | `#ff6e1f` | button hover fill (Mirage on it 5.6:1) |
+| `--paper` (Wild Sand) / `--paper-2` / `--paper-3` | `#e4eef0` / `#d9e4e8` / `#cbd9dd` | light surfaces, alternating bands |
+| `--sage` | `#a8c1c6` | quiet text on dark, soft accents |
+| `--muted` / `--muted-dark` | `#46585e` / `#9fb2b8` | secondary text on light / dark |
 
-Rule: orange ≤5% of surface area; no gradients anywhere.
+Rule: orange ≤5% of surface area; no gradients anywhere. All pairings verified via `scripts/contrast.py`.
+
+## Surface texture — elevation contours, never grids
+Page heroes and field imagery are backed by topographic contour lines (isohypses) generated in `scripts/make_contours.py` → `assets/img/brand/contours-<page>.svg`. **Each inner page has its own terrain** — About: two hill clusters with traverses; Services: one large massif left; Projects: three summits along the top; Technology: a single elongated ridge; Contact: valley traverses with one corner hill. Each carries sparse elevation labels in mono ("421 m"). Rationale: the company measures terrain height — the texture is the subject matter itself, not a decorative grid. Square grids are banned from the surface language.
 
 ## Typography (role-based)
 - **Display** — Schibsted Grotesk 600/650 (fluent clamp scale, `-0.02em`). Rationale: engineering neutral, avoids the overused default display faces.
