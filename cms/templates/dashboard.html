@@ -1,0 +1,21 @@
+<h1>Dashboard</h1>
+<div class="quick-actions">
+  <a class="btn btn--orange" href="/admin/projects/new">New project</a>
+  <a class="btn btn--ghost" href="/admin/media">Upload images</a>
+</div>
+
+<h2>Content</h2>
+<nav class="counts" aria-label="Content counts">
+  <a href="/admin/projects"><span class="n">{{projects}}</span><span class="mono">Projects</span></a>
+  <a href="/admin/projects?status=published"><span class="n">{{published}}</span><span class="mono">Published</span></a>
+  <a href="/admin/projects?status=draft"><span class="n">{{drafts}}</span><span class="mono">Drafts</span></a>
+  <a href="/admin/services"><span class="n">{{services}}</span><span class="mono">Services</span></a>
+  <a href="/admin/milestones"><span class="n">{{milestones}}</span><span class="mono">Milestones</span></a>
+  <a href="/admin/media"><span class="n">{{media}}</span><span class="mono">Images</span></a>
+</nav>
+
+<h2>Recent changes</h2>
+<table class="tbl">
+  <thead><tr><th>When</th><th>What</th><th>By</th></tr></thead>
+  <tbody>{{{activity_rows}}}</tbody>
+</table>

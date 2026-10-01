@@ -1,0 +1,70 @@
+<h1>{{heading}}</h1>
+{{{error_block}}}
+<form method="post" action="/admin/projects/save" enctype="multipart/form-data">
+  <input type="hidden" name="csrf" value="{{csrf}}">
+  <input type="hidden" name="id" value="{{project_id}}">
+  <div class="form-grid">
+    <div>
+      <div class="field">
+        <label for="title">Title</label>
+        <input id="title" name="title" type="text" value="{{title}}" maxlength="200" required>
+      </div>
+      <div class="field">
+        <label for="slug">Web address (slug)</label>
+        <input id="slug" name="slug" type="text" value="{{slug}}" maxlength="80" pattern="[a-z0-9\-]*">
+        <span class="field-hint">Leave empty to generate from the title. The project page lives at /project/&lt;slug&gt;.</span>
+      </div>
+      <div class="field">
+        <label for="category">Category</label>
+        <select id="category" name="category" required>{{{cat_options}}}</select>
+      </div>
+      <div class="field">
+        <label for="year">Year</label>
+        <input id="year" name="year" type="number" min="1900" max="2100" value="{{year}}">
+      </div>
+      <div class="field">
+        <label for="org">Client / organization (optional)</label>
+        <input id="org" name="org" type="text" value="{{org}}" maxlength="120">
+      </div>
+      <div class="field">
+        <label for="description">Description</label>
+        <textarea id="description" name="description" maxlength="4000">{{description}}</textarea>
+        <span class="field-hint">Plain text. Blank line starts a new paragraph. Links appear only in the register and project page.</span>
+      </div>
+    </div>
+    <div>
+      <div class="field">
+        <span class="field-label">Main image (shown on cards and the project page)</span>
+        <div class="current-thumb">{{{current_thumb}}}</div>
+        <select name="image_media_id">{{{image_options}}}</select>
+      </div>
+      <div class="field">
+        <label for="image_upload">…or upload a new main image</label>
+        <input id="image_upload" name="image_upload" type="file" accept="image/jpeg,image/png,image/webp">
+        <input name="image_alt" type="text" placeholder="Alt text (describe the photo)" maxlength="200">
+      </div>
+      <div class="field">
+        <span class="field-label">Additional images (project gallery)</span>
+        <div class="media-picks">{{{media_picks}}}</div>
+        <label for="images_upload">…or upload more</label>
+        <input id="images_upload" name="images_upload" type="file" accept="image/jpeg,image/png,image/webp" multiple>
+      </div>
+      <div class="checkbox-row">
+        <label><input type="checkbox" name="featured" value="1"{{featured_checked}}> Featured on the home page</label>
+      </div>
+      <div class="field">
+        <label for="featured_rank">Featured order (1 first)</label>
+        <input id="featured_rank" name="featured_rank" type="number" min="1" max="999" value="{{featured_rank}}">
+      </div>
+      <div class="checkbox-row">
+        <label><input type="checkbox" name="published" value="1"{{published_checked}}> Published on the website</label>
+      </div>
+    </div>
+  </div>
+  <div class="form-actions">
+    <button class="btn btn--orange" type="submit">Save</button>
+    <a class="btn btn--ghost" href="/admin/projects">Cancel</a>
+    {{{delete_link}}}
+    <span class="field-hint">Unchecked “Published” saves as draft — drafts never appear on the site.</span>
+  </div>
+</form>

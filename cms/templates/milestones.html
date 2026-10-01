@@ -1,0 +1,33 @@
+<h1>Milestones</h1>
+<h2>{{heading}}</h2>
+{{{error_block}}}
+<form method="post" action="/admin/milestones/save">
+  <input type="hidden" name="csrf" value="{{csrf}}">
+  <input type="hidden" name="id" value="{{milestone_id}}">
+  <div class="form-grid">
+    <div class="field">
+      <label for="text">Entry</label>
+      <textarea id="text" name="text" maxlength="500" required>{{text}}</textarea>
+      <span class="field-hint">The company timeline on the About page.</span>
+    </div>
+    <div>
+      <div class="field">
+        <label for="year">Year</label>
+        <input id="year" name="year" type="number" min="1900" max="2100" value="{{year}}" required>
+      </div>
+      <div class="field">
+        <label for="sort">Order within the year</label>
+        <input id="sort" name="sort" type="number" min="1" max="999" value="{{sort}}">
+      </div>
+      <div class="checkbox-row">
+        <label><input type="checkbox" name="published" value="1"{{published_checked}}> Shown on the website</label>
+      </div>
+    </div>
+  </div>
+  <div class="form-actions">
+    <button class="btn btn--orange" type="submit">Save</button>
+    {{{cancel}}}
+  </div>
+</form>
+<h2>All milestones</h2>
+{{{table}}}

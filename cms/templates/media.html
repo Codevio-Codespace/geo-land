@@ -1,0 +1,10 @@
+<h1>Media</h1>
+<form class="upload-form" method="post" action="/admin/media/upload" enctype="multipart/form-data">
+  <input type="hidden" name="csrf" value="{{csrf}}">
+  <label for="files">Upload images</label>
+  <input id="files" name="files" type="file" accept="image/jpeg,image/png,image/webp" multiple required>
+  <input name="alt" type="text" placeholder="Alt text (applied to all uploaded images, optional)" maxlength="200">
+  <div class="field-hint">JPG, PNG or WebP · up to 20 MB each. The site generates its own sizes automatically.</div>
+  <button class="btn btn--orange" type="submit">Upload</button>
+</form>
+{{{grid}}}

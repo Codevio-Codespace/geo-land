@@ -35,7 +35,8 @@ CREATE TABLE IF NOT EXISTS project_images (
 CREATE TABLE IF NOT EXISTS services (
   id INTEGER PRIMARY KEY, anchor TEXT UNIQUE NOT NULL, name TEXT NOT NULL,
   short_scope TEXT DEFAULT '', scope_items TEXT DEFAULT '',
-  deliverables TEXT DEFAULT '', image_media_id INTEGER REFERENCES media(id),
+  scope_paragraph TEXT DEFAULT '', deliverables TEXT DEFAULT '',
+  image_media_id INTEGER REFERENCES media(id),
   sort INTEGER DEFAULT 100, published INTEGER DEFAULT 1, updated_at TEXT);
 CREATE TABLE IF NOT EXISTS milestones (
   id INTEGER PRIMARY KEY, year INTEGER NOT NULL, text TEXT NOT NULL,

@@ -240,6 +240,9 @@ def save_service(data, actor, service_id=None):
     short_scope, err = _text(data, 'short_scope', 200, label='Short scope')
     if err:
         errors.append(err)
+    scope_paragraph, err = _text(data, 'scope_paragraph', 1200, label='Intro paragraph')
+    if err:
+        errors.append(err)
     deliverables, err = _text(data, 'deliverables', 300, label='Deliverables')
     if err:
         errors.append(err)
@@ -269,16 +272,17 @@ def save_service(data, actor, service_id=None):
 
     if service_id:
         db.execute(
-            'UPDATE services SET anchor=?, name=?, short_scope=?, scope_items=?, deliverables=?, '
-            'image_media_id=?, sort=?, published=?, updated_at=? WHERE id=?',
-            (anchor, name, short_scope, scope_text, deliverables, image_id, sort, published,
-             db.now(), service_id))
+            'UPDATE services SET anchor=?, name=?, short_scope=?, scope_items=?, scope_paragraph=?, '
+            'deliverables=?, image_media_id=?, sort=?, published=?, updated_at=? WHERE id=?',
+            (anchor, name, short_scope, scope_text, scope_paragraph, deliverables, image_id,
+             sort, published, db.now(), service_id))
         sid = service_id
     else:
         cur = db.execute(
-            'INSERT INTO services (anchor, name, short_scope, scope_items, deliverables, '
-            'image_media_id, sort, published, updated_at) VALUES (?,?,?,?,?,?,?,?,?)',
-            (anchor, name, short_scope, scope_text, deliverables, image_id, sort, published, db.now()))
+            'INSERT INTO services (anchor, name, short_scope, scope_items, scope_paragraph, '
+            'deliverables, image_media_id, sort, published, updated_at) VALUES (?,?,?,?,?,?,?,?,?,?)',
+            (anchor, name, short_scope, scope_text, scope_paragraph, deliverables, image_id,
+             sort, published, db.now()))
         sid = cur.lastrowid
     db.log(actor, 'update' if service_id else 'create', 'service', sid,
            f'{"Updated" if service_id else "Created"} service “{name}”')
