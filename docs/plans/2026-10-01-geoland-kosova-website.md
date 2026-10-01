@@ -1,6 +1,6 @@
 # GeoLand Kosova Website Rebuild — Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use subagent-driven-development (recommended) or executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **For agentic workers:** REQUIRED SUB-SKILL: Use subagent-driven-development (recommended) or executing-plans to implement this plan task-by-task. Steps use checkbox (`- [x]`) syntax for tracking.
 
 **Goal:** Replace the outdated Joomla site at geoland-kosova.com with a premium, static, bilingual-ready presentation site (6 pages) that uses only the company's real information and an original measurement-inspired design system.
 
@@ -213,11 +213,11 @@ Foundation first (tokens → components → JS), then pages in value order (home
 **Files:**
 - Create: `scripts/fetch_images.ps1`, `scripts/optimize_images.py`, `assets/img/**`
 
-- [ ] **Step 1: Write the fetch script** `scripts/fetch_images.ps1` — downloads the curated real-asset list to `research/originals/` with a `$base = "https://www.geoland-kosova.com"` and an array of relative paths: services (`/images/services/gisimg.png`, `imgforestry.png`, `mappingandremote.jpg`, `agricultureimg.png`, `ortos.jpg`), projects (`/images/projets/image.png`, `kfis1.png`, `kaveko.jpg`, `efr.jpg`, `devvineyard.jpg`, `rahovec.jpg`, `31.png`, `21.png`, `client-banner.jpg`, `brezovica.jpg`, `digitalmap.jpg`, `reconstruction.jpg`, `gispeja.jpg`, `imgaddresingsystem.png`), UAV (`/images/services/uav/uav1.jpg`, `IMG-20200718-WA0016.jpg`, `IMG-20200718-WA0043.jpg`, `ortho1.PNG`..`ortho3.PNG`, `orto4.PNG`, `orto5.PNG`, `pointcloud2.PNG`, `dem1.PNG`..`dem3.PNG`), team (`/images/staff/menagment/img1.jpg`, `/images/staff/geodesy/img1.jpg`, `/images/staff/sofwtaredeveloper/img1.jpg`, `/images/staff/agriculture/img1.jpg`), certs (`/images/certificates/1.jpg`, `2.jpg`, `3.jpg`, `CERTI.png` → `/images/companyprofile/CERTI.png`), Airbus (`/images/airbusGroup/AIRBUS.jpg`, `intro.png`, `r54519_9_constellation-imagery-062019.jpg`), gallery subset (`/images/gallery/001.jpg`, `003.jpg`, `005.jpg`, `008.jpg`, `010.jpg`, `012.jpg`, `014.jpg`, `017.jpg`, `020.jpg`, `026.jpeg`, `027.jpg`, `028.jpg`), about (`/images/companyprofile/profilecompany.jpg`). Use a loop with `Invoke-WebRequest`, skip-if-exists, `-OutFile` to `research/originals/<slug>`. Slug = path minus leading slash with `/`→`-`.
-- [ ] **Step 2: Run it** — `powershell -File scripts/fetch_images.ps1`; Expected: ~50 files in `research/originals/`, none 0 bytes. Fix any 404 names by checking casing (note `orto4.PNG` vs `ortho*`, `sofwtaredeveloper` typo is real).
-- [ ] **Step 3: Write the optimizer** `scripts/optimize_images.py` — PIL: for each original, produce width targets `[1600, 900, 640]` (only ≤ original width), save WebP q78 + JPEG q80 into `assets/img/<group>/<name>-<w>.webp|.jpg`; group mapping from filename prefix table in the script; also emit `research/manifest.txt` lines `group/name|w|webp-size`. Skip files already present.
-- [ ] **Step 4: Run optimizer + inspect** — `python scripts/optimize_images.py && Get-ChildItem assets/img -Recurse | Measure-Object -Property Length -Sum`; Expected: < 15MB total, no errors. Read 6 random outputs with the Read tool to confirm they are real photos (not placeholders).
-- [ ] **Step 5: Commit** — `git add -A; git commit -m "chore: scaffold project and build image pipeline with real GeoLand assets"`
+- [x] **Step 1: Write the fetch script** `scripts/fetch_images.ps1` — downloads the curated real-asset list to `research/originals/` with a `$base = "https://www.geoland-kosova.com"` and an array of relative paths: services (`/images/services/gisimg.png`, `imgforestry.png`, `mappingandremote.jpg`, `agricultureimg.png`, `ortos.jpg`), projects (`/images/projets/image.png`, `kfis1.png`, `kaveko.jpg`, `efr.jpg`, `devvineyard.jpg`, `rahovec.jpg`, `31.png`, `21.png`, `client-banner.jpg`, `brezovica.jpg`, `digitalmap.jpg`, `reconstruction.jpg`, `gispeja.jpg`, `imgaddresingsystem.png`), UAV (`/images/services/uav/uav1.jpg`, `IMG-20200718-WA0016.jpg`, `IMG-20200718-WA0043.jpg`, `ortho1.PNG`..`ortho3.PNG`, `orto4.PNG`, `orto5.PNG`, `pointcloud2.PNG`, `dem1.PNG`..`dem3.PNG`), team (`/images/staff/menagment/img1.jpg`, `/images/staff/geodesy/img1.jpg`, `/images/staff/sofwtaredeveloper/img1.jpg`, `/images/staff/agriculture/img1.jpg`), certs (`/images/certificates/1.jpg`, `2.jpg`, `3.jpg`, `CERTI.png` → `/images/companyprofile/CERTI.png`), Airbus (`/images/airbusGroup/AIRBUS.jpg`, `intro.png`, `r54519_9_constellation-imagery-062019.jpg`), gallery subset (`/images/gallery/001.jpg`, `003.jpg`, `005.jpg`, `008.jpg`, `010.jpg`, `012.jpg`, `014.jpg`, `017.jpg`, `020.jpg`, `026.jpeg`, `027.jpg`, `028.jpg`), about (`/images/companyprofile/profilecompany.jpg`). Use a loop with `Invoke-WebRequest`, skip-if-exists, `-OutFile` to `research/originals/<slug>`. Slug = path minus leading slash with `/`→`-`.
+- [x] **Step 2: Run it** — `powershell -File scripts/fetch_images.ps1`; Expected: ~50 files in `research/originals/`, none 0 bytes. Fix any 404 names by checking casing (note `orto4.PNG` vs `ortho*`, `sofwtaredeveloper` typo is real).
+- [x] **Step 3: Write the optimizer** `scripts/optimize_images.py` — PIL: for each original, produce width targets `[1600, 900, 640]` (only ≤ original width), save WebP q78 + JPEG q80 into `assets/img/<group>/<name>-<w>.webp|.jpg`; group mapping from filename prefix table in the script; also emit `research/manifest.txt` lines `group/name|w|webp-size`. Skip files already present.
+- [x] **Step 4: Run optimizer + inspect** — `python scripts/optimize_images.py && Get-ChildItem assets/img -Recurse | Measure-Object -Property Length -Sum`; Expected: < 15MB total, no errors. Read 6 random outputs with the Read tool to confirm they are real photos (not placeholders).
+- [x] **Step 5: Commit** — `git add -A; git commit -m "chore: scaffold project and build image pipeline with real GeoLand assets"`
 
 ---
 
@@ -225,12 +225,12 @@ Foundation first (tokens → components → JS), then pages in value order (home
 
 **Files:** Create `assets/css/base.css`
 
-- [ ] **Step 1: Skeleton** — write the full `:root` token block from §4.1 verbatim, then empty section comment stubs: RESET, BASE TYPE, UTILITIES, GRID/CONTAINER, MOTION PRIMITIVES, REDUCED MOTION.
-- [ ] **Step 2: Fill RESET + BASE TYPE** — box-sizing border-box; margin 0; `html { scroll-behavior: smooth; -webkit-text-size-adjust }`; `body { background: var(--paper); color: var(--ink); font: 400 var(--step-0)/1.65 var(--font-body) }`; headings → display font, weights, tracking, `text-wrap: balance`; `p { max-width: 68ch }`; `a` color inherit + underline offset; `::selection { background: var(--orange); color: var(--paper) }`; focus-visible → `outline: 2px solid var(--orange); outline-offset: 3px`; `img,svg,video { display:block; max-width:100% }`.
-- [ ] **Step 3: Fill UTILITIES + GRID** — `.container` (max-width + padding-inline); `.grid-12`; `.mono` (mono label style); `.eyebrow`; `.lead`; `.rule` (hairline hr); `.visually-hidden`; `.skip-link` (visible on focus); `.section` padding; `.section--paper2`, `.section--ink` inversions; `.section-head` pattern per §5; `.link-arrow`.
-- [ ] **Step 4: Fill MOTION PRIMITIVES + REDUCED MOTION** — `[data-reveal] { opacity: 0; transform: translateY(22px); transition: opacity var(--dur-3) var(--ease-out), transform var(--dur-3) var(--ease-out); transition-delay: var(--reveal-delay, 0ms) }`; `.is-revealed` reset; `@media (prefers-reduced-motion: reduce)` → all `[data-reveal]` visible, transitions `0.01ms`, `scroll-behavior auto`.
-- [ ] **Step 5: Verify** — `python -m http.server 4173` (background) then `python -c "import urllib.request; print(urllib.request.urlopen('http://localhost:4173/assets/css/base.css').status)"` → `200`. Sanity grep: `findstr /C:"--orange" assets\css\base.css`.
-- [ ] **Step 6: Commit** — `git add assets/css/base.css; git commit -m "feat: design tokens, typography and base primitives"`
+- [x] **Step 1: Skeleton** — write the full `:root` token block from §4.1 verbatim, then empty section comment stubs: RESET, BASE TYPE, UTILITIES, GRID/CONTAINER, MOTION PRIMITIVES, REDUCED MOTION.
+- [x] **Step 2: Fill RESET + BASE TYPE** — box-sizing border-box; margin 0; `html { scroll-behavior: smooth; -webkit-text-size-adjust }`; `body { background: var(--paper); color: var(--ink); font: 400 var(--step-0)/1.65 var(--font-body) }`; headings → display font, weights, tracking, `text-wrap: balance`; `p { max-width: 68ch }`; `a` color inherit + underline offset; `::selection { background: var(--orange); color: var(--paper) }`; focus-visible → `outline: 2px solid var(--orange); outline-offset: 3px`; `img,svg,video { display:block; max-width:100% }`.
+- [x] **Step 3: Fill UTILITIES + GRID** — `.container` (max-width + padding-inline); `.grid-12`; `.mono` (mono label style); `.eyebrow`; `.lead`; `.rule` (hairline hr); `.visually-hidden`; `.skip-link` (visible on focus); `.section` padding; `.section--paper2`, `.section--ink` inversions; `.section-head` pattern per §5; `.link-arrow`.
+- [x] **Step 4: Fill MOTION PRIMITIVES + REDUCED MOTION** — `[data-reveal] { opacity: 0; transform: translateY(22px); transition: opacity var(--dur-3) var(--ease-out), transform var(--dur-3) var(--ease-out); transition-delay: var(--reveal-delay, 0ms) }`; `.is-revealed` reset; `@media (prefers-reduced-motion: reduce)` → all `[data-reveal]` visible, transitions `0.01ms`, `scroll-behavior auto`.
+- [x] **Step 5: Verify** — `python -m http.server 4173` (background) then `python -c "import urllib.request; print(urllib.request.urlopen('http://localhost:4173/assets/css/base.css').status)"` → `200`. Sanity grep: `findstr /C:"--orange" assets\css\base.css`.
+- [x] **Step 6: Commit** — `git add assets/css/base.css; git commit -m "feat: design tokens, typography and base primitives"`
 
 ---
 
@@ -238,13 +238,13 @@ Foundation first (tokens → components → JS), then pages in value order (home
 
 **Files:** Create `assets/css/components.css`
 
-- [ ] **Step 1: Skeleton** — stubs: NAV, DRAWER, FOOTER, BUTTONS, CRED STRIP, SECTION HEAD ART, SERVICE ROW, PROJECT ROW + PEEK, DIALOG, LIGHTBOX, TEAM/CERT/TIMELINE/FACT, FORMS, CTA BAND, PAGE HERO, GALLERY STRIP.
-- [ ] **Step 2: NAV + DRAWER** — `.site-nav` fixed top, transparent initially, `.is-scrolled` → paper bg + bottom hairline + reduced height; grid: logo | links | CTA | toggle. Logo = inline SVG hexagon mark + wordmark "GEO&LAND" (GEO& ink, LAND orange, mono 700). Links: Instrument Sans 500 15px, hover → orange underline offset. `.nav-toggle` 44×44 visible <1024px. `.nav-drawer` fixed inset-block, `translateX(105%)`, `.is-open` → 0; contains links (24px display) + contact facts; `body.nav-open { overflow: hidden }`.
-- [ ] **Step 3: FOOTER + CTA BAND + PAGE HERO** — footer dark (`--ink`), 4-col grid, hairline top, mono column titles, muted links, certifications line, social inline SVG icons, `[data-year]`. `.cta-band` ink background, display h2 + orange button + mono coordinates right. `.page-hero` paper-2 background, grid lines bg, mono breadcrumb (`Home / Services`), h1 `--step-4`, lead, right-aligned mono index.
-- [ ] **Step 4: BUTTONS/BUTTON VARIANTS + FORMS** — `.btn` block styles per §4.3; `.field` stack, inputs 48px, 1px border, focus orange; `.form-note`; error style `.field--error input { border-color: var(--orange) }`.
-- [ ] **Step 5: SERVICE ROW + PROJECT ROW + PEEK + DIALOG** — exact accordion mechanics: `.svc` (button full-width grid: index | name | chevron); `.svc-panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows var(--dur-2) var(--ease) }`; `.svc.is-open .svc-panel { grid-template-rows: 1fr }`; inner `overflow: hidden`; open state index orange. `.proj-row` 4-col grid with hairline top; `.proj-peek` fixed, 320×220, pointer-events none, opacity 0, follows cursor (transform set by JS), hidden by default + `@media (hover:none)` hidden always. `dialog` reset + `.proj-dialog` layout (image 16:9, meta mono, description, close 44×44), `::backdrop rgba(6,18,14,.6)`, `@starting-style` entrance.
-- [ ] **Step 6: LIGHTBOX + TEAM/CERT/TIMELINE/FACT + GALLERY STRIP + CRED STRIP** — `dialog.lightbox` centered image + caption + prev/next/close buttons (44px), keyboard hint mono. `.team-card`, `.cert-card`, `.timeline` rows, `.fact` value (`--step-3` display) + label mono. `.gallery-strip` horizontal scroll-snap row of square images with `scrollbar-width: none`. `.creds` 4-col hairline grid, mono labels.
-- [ ] **Step 7: Verify + commit** — grep each class exists: `findstr /C:".svc-panel" /C:".proj-row" /C:".nav-drawer" assets\css\components.css`; HTTP 200 check; commit `feat: shared components — nav, footer, service accordion, project list, dialogs, forms`.
+- [x] **Step 1: Skeleton** — stubs: NAV, DRAWER, FOOTER, BUTTONS, CRED STRIP, SECTION HEAD ART, SERVICE ROW, PROJECT ROW + PEEK, DIALOG, LIGHTBOX, TEAM/CERT/TIMELINE/FACT, FORMS, CTA BAND, PAGE HERO, GALLERY STRIP.
+- [x] **Step 2: NAV + DRAWER** — `.site-nav` fixed top, transparent initially, `.is-scrolled` → paper bg + bottom hairline + reduced height; grid: logo | links | CTA | toggle. Logo = inline SVG hexagon mark + wordmark "GEO&LAND" (GEO& ink, LAND orange, mono 700). Links: Instrument Sans 500 15px, hover → orange underline offset. `.nav-toggle` 44×44 visible <1024px. `.nav-drawer` fixed inset-block, `translateX(105%)`, `.is-open` → 0; contains links (24px display) + contact facts; `body.nav-open { overflow: hidden }`.
+- [x] **Step 3: FOOTER + CTA BAND + PAGE HERO** — footer dark (`--ink`), 4-col grid, hairline top, mono column titles, muted links, certifications line, social inline SVG icons, `[data-year]`. `.cta-band` ink background, display h2 + orange button + mono coordinates right. `.page-hero` paper-2 background, grid lines bg, mono breadcrumb (`Home / Services`), h1 `--step-4`, lead, right-aligned mono index.
+- [x] **Step 4: BUTTONS/BUTTON VARIANTS + FORMS** — `.btn` block styles per §4.3; `.field` stack, inputs 48px, 1px border, focus orange; `.form-note`; error style `.field--error input { border-color: var(--orange) }`.
+- [x] **Step 5: SERVICE ROW + PROJECT ROW + PEEK + DIALOG** — exact accordion mechanics: `.svc` (button full-width grid: index | name | chevron); `.svc-panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows var(--dur-2) var(--ease) }`; `.svc.is-open .svc-panel { grid-template-rows: 1fr }`; inner `overflow: hidden`; open state index orange. `.proj-row` 4-col grid with hairline top; `.proj-peek` fixed, 320×220, pointer-events none, opacity 0, follows cursor (transform set by JS), hidden by default + `@media (hover:none)` hidden always. `dialog` reset + `.proj-dialog` layout (image 16:9, meta mono, description, close 44×44), `::backdrop rgba(6,18,14,.6)`, `@starting-style` entrance.
+- [x] **Step 6: LIGHTBOX + TEAM/CERT/TIMELINE/FACT + GALLERY STRIP + CRED STRIP** — `dialog.lightbox` centered image + caption + prev/next/close buttons (44px), keyboard hint mono. `.team-card`, `.cert-card`, `.timeline` rows, `.fact` value (`--step-3` display) + label mono. `.gallery-strip` horizontal scroll-snap row of square images with `scrollbar-width: none`. `.creds` 4-col hairline grid, mono labels.
+- [x] **Step 7: Verify + commit** — grep each class exists: `findstr /C:".svc-panel" /C:".proj-row" /C:".nav-drawer" assets\css\components.css`; HTTP 200 check; commit `feat: shared components — nav, footer, service accordion, project list, dialogs, forms`.
 
 ---
 
@@ -252,13 +252,13 @@ Foundation first (tokens → components → JS), then pages in value order (home
 
 **Files:** Create `assets/css/pages.css`
 
-- [ ] **Step 1: Skeleton** — stubs: HERO HOME, HOME SERVICES INDEX, FEATURED PROJECTS, ABOUT TEASER, TECH STRIP, ABOUT PAGE, SERVICES PAGE, PROJECTS PAGE, TECHNOLOGY PAGE, CONTACT PAGE, RESPONSIVE (1023/719/hover-none).
-- [ ] **Step 2: HOME hero** — full-viewport (min 88svh) grid: left copy (kicker mono, h1 and lead exactly per §11.2), CTA row, mono coordinates bottom. Right: real orthophoto image in 4:5 box with orange corner markers (pure CSS `::before/::after` ticks). Contour SVG absolutely positioned, low opacity, `aria-hidden`. Draw-in keyframes.
-- [ ] **Step 3: HOME services index + featured projects + about teaser + tech strip** — services index = 6 hairline rows with mono numbers, name, one-line scope, arrow; hover row → ink background text paper? (keep: hover → background paper-2 + orange number). Featured = 2 large project cards (real image + name + category + year) + 2 rows. About teaser = split: text left, team photo right, facts strip below (6 disciplines / 20+ projects / ISO). Tech strip = ink section: UAV mini-gallery 3 images + text + Airbus partner line.
-- [ ] **Step 4: ABOUT + SERVICES pages** — `.about-profile` two-col (prose + portrait image), `.values` 4 items, `.teams` alternating rows, `.certs` 3 cards, `.timeline` list, `.careers-note`. Services page: intro + accordion + `.svc-detail` extras.
-- [ ] **Step 5: PROJECTS + TECHNOLOGY + CONTACT pages** — `.filters` (button row, `.is-active` orange underline), `.proj-list`, `.tech-specs` definition rows, `.deliverable-tabs` (reuse accordion classes where possible — DRY), `.products` 5 cards, `.airbus` dark band + scrollable table, `.contact-cards` 2-col, `.map-embed` 16:9 iframe frame, `.form` max 640px.
-- [ ] **Step 6: Responsive block** — all §7 rules; verify no horizontal scroll at 360px via Playwright screenshot check (Task 12).
-- [ ] **Step 7: Verify + commit** — `findstr /C:"@media" assets\css\pages.css` shows 1023 + 719 + hover-none; commit `feat: page sections and responsive rules`.
+- [x] **Step 1: Skeleton** — stubs: HERO HOME, HOME SERVICES INDEX, FEATURED PROJECTS, ABOUT TEASER, TECH STRIP, ABOUT PAGE, SERVICES PAGE, PROJECTS PAGE, TECHNOLOGY PAGE, CONTACT PAGE, RESPONSIVE (1023/719/hover-none).
+- [x] **Step 2: HOME hero** — full-viewport (min 88svh) grid: left copy (kicker mono, h1 and lead exactly per §11.2), CTA row, mono coordinates bottom. Right: real orthophoto image in 4:5 box with orange corner markers (pure CSS `::before/::after` ticks). Contour SVG absolutely positioned, low opacity, `aria-hidden`. Draw-in keyframes.
+- [x] **Step 3: HOME services index + featured projects + about teaser + tech strip** — services index = 6 hairline rows with mono numbers, name, one-line scope, arrow; hover row → ink background text paper? (keep: hover → background paper-2 + orange number). Featured = 2 large project cards (real image + name + category + year) + 2 rows. About teaser = split: text left, team photo right, facts strip below (6 disciplines / 20+ projects / ISO). Tech strip = ink section: UAV mini-gallery 3 images + text + Airbus partner line.
+- [x] **Step 4: ABOUT + SERVICES pages** — `.about-profile` two-col (prose + portrait image), `.values` 4 items, `.teams` alternating rows, `.certs` 3 cards, `.timeline` list, `.careers-note`. Services page: intro + accordion + `.svc-detail` extras.
+- [x] **Step 5: PROJECTS + TECHNOLOGY + CONTACT pages** — `.filters` (button row, `.is-active` orange underline), `.proj-list`, `.tech-specs` definition rows, `.deliverable-tabs` (reuse accordion classes where possible — DRY), `.products` 5 cards, `.airbus` dark band + scrollable table, `.contact-cards` 2-col, `.map-embed` 16:9 iframe frame, `.form` max 640px.
+- [x] **Step 6: Responsive block** — all §7 rules; verify no horizontal scroll at 360px via Playwright screenshot check (Task 12).
+- [x] **Step 7: Verify + commit** — `findstr /C:"@media" assets\css\pages.css` shows 1023 + 719 + hover-none; commit `feat: page sections and responsive rules`.
 
 ---
 
@@ -266,11 +266,11 @@ Foundation first (tokens → components → JS), then pages in value order (home
 
 **Files:** Create `assets/js/main.js`
 
-- [ ] **Step 1: Skeleton** — module pattern: `const $ = (s, c=document) => c.querySelector(s); const $$ = ...`; init functions `initNav()`, `initReveal()`, `initYear()`, `initLightbox()`, `initForm()`, each guarded by element existence; call all on DOMContentLoaded.
-- [ ] **Step 2: Nav + reveal + year** — `initNav`: scroll > 24px → `.is-scrolled`; toggle `.is-open` + `aria-expanded`; Esc + drawer backdrop close; focus first link on open; close on link click. `initReveal`: IntersectionObserver, unobserve after reveal, `data-reveal-delay` → `style.setProperty('--reveal-delay', ...)`. `initYear`: `[data-year]`.
-- [ ] **Step 3: Lightbox** — `initLightbox`: `[data-lightbox]` triggers read `data-group`; dialog contains img + caption; prev/next with wrap; keyboard ArrowLeft/Right/Esc; restore focus to trigger on close.
-- [ ] **Step 4: Form** — `initForm` (contact): on submit preventDefault; validate name/email/subject/message (`type="email"` + non-empty); render errors into `.field-error[aria-live="polite"]`; if valid → `location.href = mailto:info@geoland-kosova.com?subject=...&body=...` via `encodeURIComponent`, show `.form-success` note.
-- [ ] **Step 5: Verify + commit** — `node --check assets/js/main.js` → no output; commit `feat: shared interactions — nav, reveals, lightbox, contact form`.
+- [x] **Step 1: Skeleton** — module pattern: `const $ = (s, c=document) => c.querySelector(s); const $$ = ...`; init functions `initNav()`, `initReveal()`, `initYear()`, `initLightbox()`, `initForm()`, each guarded by element existence; call all on DOMContentLoaded.
+- [x] **Step 2: Nav + reveal + year** — `initNav`: scroll > 24px → `.is-scrolled`; toggle `.is-open` + `aria-expanded`; Esc + drawer backdrop close; focus first link on open; close on link click. `initReveal`: IntersectionObserver, unobserve after reveal, `data-reveal-delay` → `style.setProperty('--reveal-delay', ...)`. `initYear`: `[data-year]`.
+- [x] **Step 3: Lightbox** — `initLightbox`: `[data-lightbox]` triggers read `data-group`; dialog contains img + caption; prev/next with wrap; keyboard ArrowLeft/Right/Esc; restore focus to trigger on close.
+- [x] **Step 4: Form** — `initForm` (contact): on submit preventDefault; validate name/email/subject/message (`type="email"` + non-empty); render errors into `.field-error[aria-live="polite"]`; if valid → `location.href = mailto:info@geoland-kosova.com?subject=...&body=...` via `encodeURIComponent`, show `.form-success` note.
+- [x] **Step 5: Verify + commit** — `node --check assets/js/main.js` → no output; commit `feat: shared interactions — nav, reveals, lightbox, contact form`.
 
 ---
 
@@ -278,12 +278,12 @@ Foundation first (tokens → components → JS), then pages in value order (home
 
 **Files:** Create `index.html` (link base/components/pages.css, main.js defer, JSON-LD Organization, OG tags, hero preload)
 
-- [ ] **Step 1: Skeleton** — full `<head>` (title `Geo&Land Kosova — Geoinformation, Surveying & GIS`, meta description, canonical, OG, JSON-LD Organization, font preconnect + CSS link), skip-link, nav, main with section stubs `<!-- HERO --> <section id="hero"> …`, `<!-- CREDS -->`, `<!-- SERVICES -->`, `<!-- FEATURED -->`, `<!-- ABOUT TEASER -->`, `<!-- TECH -->`, `<!-- CTA -->`, footer. Copy nav + footer markup from §11.1/§11.7 (same on every page).
-- [ ] **Step 2: Hero section** — per §11.2 copy; contour SVG inline (single `<path>`, `stroke-dasharray` anim); coordinates mono; hero image `assets/img/uav/ortho1-900.webp` with JPEG fallback via `<picture>`; corner ticks.
-- [ ] **Step 3: Creds + services index** — §11.3/§11.4 copy; 6 rows linking to `services.html#gis` etc. (anchor ids `gis`, `surveying`, `mapping`, `agri`, `ortho`, `uav`).
-- [ ] **Step 4: Featured projects** — §11.5: 2 large + 2 compact rows using real images (`projects/brezovica-900.webp`, `projects/kfis1-900.webp`, `projects/rahovec-900.webp`, `projects/gispeja-900.webp`); all link `projects.html`.
-- [ ] **Step 5: About teaser + tech strip + CTA** — §11.6 copy; facts strip; UAV mini gallery (3 real images, `data-lightbox`); Airbus line; CTA band.
-- [ ] **Step 6: Read full file, fix inconsistencies, commit** — every `src` exists (`Test-Path` loop over parsed paths); commit `feat: home page`.
+- [x] **Step 1: Skeleton** — full `<head>` (title `Geo&Land Kosova — Geoinformation, Surveying & GIS`, meta description, canonical, OG, JSON-LD Organization, font preconnect + CSS link), skip-link, nav, main with section stubs `<!-- HERO --> <section id="hero"> …`, `<!-- CREDS -->`, `<!-- SERVICES -->`, `<!-- FEATURED -->`, `<!-- ABOUT TEASER -->`, `<!-- TECH -->`, `<!-- CTA -->`, footer. Copy nav + footer markup from §11.1/§11.7 (same on every page).
+- [x] **Step 2: Hero section** — per §11.2 copy; contour SVG inline (single `<path>`, `stroke-dasharray` anim); coordinates mono; hero image `assets/img/uav/ortho1-900.webp` with JPEG fallback via `<picture>`; corner ticks.
+- [x] **Step 3: Creds + services index** — §11.3/§11.4 copy; 6 rows linking to `services.html#gis` etc. (anchor ids `gis`, `surveying`, `mapping`, `agri`, `ortho`, `uav`).
+- [x] **Step 4: Featured projects** — §11.5: 2 large + 2 compact rows using real images (`projects/brezovica-900.webp`, `projects/kfis1-900.webp`, `projects/rahovec-900.webp`, `projects/gispeja-900.webp`); all link `projects.html`.
+- [x] **Step 5: About teaser + tech strip + CTA** — §11.6 copy; facts strip; UAV mini gallery (3 real images, `data-lightbox`); Airbus line; CTA band.
+- [x] **Step 6: Read full file, fix inconsistencies, commit** — every `src` exists (`Test-Path` loop over parsed paths); commit `feat: home page`.
 
 ---
 
@@ -291,11 +291,11 @@ Foundation first (tokens → components → JS), then pages in value order (home
 
 **Files:** Create `about.html`
 
-- [ ] **Step 1: Skeleton** — head (title `Geo&Land Kosova — About`, desc from profile line, OG, BreadcrumbList JSON-LD), nav, page hero (§11.8), stubs: PROFILE, MISSION, TEAMS, CERTS, CLIENTS, TIMELINE, CAREERS, CTA, footer.
-- [ ] **Step 2: Profile + mission** — §11.9 copy (edited source text, quotes preserved); values as 4 hairline items (integrity, collaboration, commitment, professionalism); profile photo `assets/img/about/profilecompany-900.webp` + fallback.
-- [ ] **Step 3: Teams (4) + certs (3)** — §11.10 copy; team photos from `assets/img/team/*`; cert cards with scans from `assets/img/certs/*` (mapping fixed in Task 0 optimizer: `1.jpg`, `2.jpg`, `3.jpg`, `CERTI.png` → group `certs`).
-- [ ] **Step 4: Clients + timeline + careers** — §11.11 copy; clients paragraph + named organizations listed as evidence ("Selected organizations GeoLand has worked with, as cited in project records: FAO, USAID, Deloitte, Ministry of Agriculture, Kosovo Forest Agency, Municipality of Peja, Municipality of Rahovec, MoESP, New CO Ferronickel, Consult Engineering"); timeline 2011→2019 from §2.4; careers note links to contact (job application docx referenced as external link to old site until a new file is provided — use `https://www.geoland-kosova.com/images/jobapp/jobapp.docx`).
-- [ ] **Step 5: Review + commit** — read file end-to-end; commit `feat: about page`.
+- [x] **Step 1: Skeleton** — head (title `Geo&Land Kosova — About`, desc from profile line, OG, BreadcrumbList JSON-LD), nav, page hero (§11.8), stubs: PROFILE, MISSION, TEAMS, CERTS, CLIENTS, TIMELINE, CAREERS, CTA, footer.
+- [x] **Step 2: Profile + mission** — §11.9 copy (edited source text, quotes preserved); values as 4 hairline items (integrity, collaboration, commitment, professionalism); profile photo `assets/img/about/profilecompany-900.webp` + fallback.
+- [x] **Step 3: Teams (4) + certs (3)** — §11.10 copy; team photos from `assets/img/team/*`; cert cards with scans from `assets/img/certs/*` (mapping fixed in Task 0 optimizer: `1.jpg`, `2.jpg`, `3.jpg`, `CERTI.png` → group `certs`).
+- [x] **Step 4: Clients + timeline + careers** — §11.11 copy; clients paragraph + named organizations listed as evidence ("Selected organizations GeoLand has worked with, as cited in project records: FAO, USAID, Deloitte, Ministry of Agriculture, Kosovo Forest Agency, Municipality of Peja, Municipality of Rahovec, MoESP, New CO Ferronickel, Consult Engineering"); timeline 2011→2019 from §2.4; careers note links to contact (job application docx referenced as external link to old site until a new file is provided — use `https://www.geoland-kosova.com/images/jobapp/jobapp.docx`).
+- [x] **Step 5: Review + commit** — read file end-to-end; commit `feat: about page`.
 
 ---
 
@@ -303,11 +303,11 @@ Foundation first (tokens → components → JS), then pages in value order (home
 
 **Files:** Create `services.html`, `assets/js/services.js`
 
-- [ ] **Step 1: Skeleton page** — head (title `Geo&Land Kosova — Services`, OG, BreadcrumbList), nav, page hero, stubs: INTRO, ACCORDION (6 services, anchor ids `gis`, `surveying`, `mapping`, `agri`, `ortho`, `uav`), CAPABILITIES, CTA, footer.
-- [ ] **Step 2: Accordion markup for services 1–3** — exact pattern per §5 `.svc`; each panel: scope `<ul>` (real bullets from §2.1), image `<picture>`, mono "DELIVERABLES" label. Service 1 open by default (`aria-expanded="true"`).
-- [ ] **Step 3: Accordion markup services 4–6 + capabilities section** — §11.12 copy; capabilities = 3-col hairline grid summarizing platforms (commercial & open source GIS, Web-GIS, INSPIRE-aligned software development, DBMS/geo server components — all sourced statements).
-- [ ] **Step 4: `services.js`** — one-open accordion: click toggles; close others; hash on load opens matching id and scrolls with offset; `aria-expanded` synced; keyboard: buttons native, ArrowUp/Down moves focus between headers (roving); Esc closes.
-- [ ] **Step 5: Verify + commit** — `node --check assets/js/services.js`; open page, click through (Playwright check in Task 12); commit `feat: services page with accessible service accordion`.
+- [x] **Step 1: Skeleton page** — head (title `Geo&Land Kosova — Services`, OG, BreadcrumbList), nav, page hero, stubs: INTRO, ACCORDION (6 services, anchor ids `gis`, `surveying`, `mapping`, `agri`, `ortho`, `uav`), CAPABILITIES, CTA, footer.
+- [x] **Step 2: Accordion markup for services 1–3** — exact pattern per §5 `.svc`; each panel: scope `<ul>` (real bullets from §2.1), image `<picture>`, mono "DELIVERABLES" label. Service 1 open by default (`aria-expanded="true"`).
+- [x] **Step 3: Accordion markup services 4–6 + capabilities section** — §11.12 copy; capabilities = 3-col hairline grid summarizing platforms (commercial & open source GIS, Web-GIS, INSPIRE-aligned software development, DBMS/geo server components — all sourced statements).
+- [x] **Step 4: `services.js`** — one-open accordion: click toggles; close others; hash on load opens matching id and scrolls with offset; `aria-expanded` synced; keyboard: buttons native, ArrowUp/Down moves focus between headers (roving); Esc closes.
+- [x] **Step 5: Verify + commit** — `node --check assets/js/services.js`; open page, click through (Playwright check in Task 12); commit `feat: services page with accessible service accordion`.
 
 ---
 
@@ -315,11 +315,11 @@ Foundation first (tokens → components → JS), then pages in value order (home
 
 **Files:** Create `projects.html`, `assets/js/projects.js`
 
-- [ ] **Step 1: Skeleton page** — head (title `Geo&Land Kosova — Projects`, OG, BreadcrumbList), nav, page hero, stubs: FILTERS, LIST, DIALOG, CTA, footer.
-- [ ] **Step 2: `projects.js` data literal** — `const PROJECTS = [...]` with every real project from §2.3 (deduplicated), each: `{ id, title, cat: 'gis-agri'|'software'|'cadastre'|'forestry', year, desc, img, org? }`. Descriptions: use source text where available (verbatim-safe condensed), else title only + category (never invent scope). Include the 4 category labels map. Write in =2 edits; verify with `node --check`.
-- [ ] **Step 3: JS behavior** — render list rows into `#proj-list` (JS-rendered to avoid 24 duplicated HTML blocks); filter buttons toggle `data-active`, filter with `hidden` attr + count update in `aria-live` region; row click → fill dialog (title, meta, desc, image) + `showModal()`; close button + Esc + backdrop click; floating peek preview: on `mouseenter` set image, rAF lerp follow, disable when `matchMedia('(hover: none)')`.
-- [ ] **Step 4: Page wiring** — filters + list container + dialog skeleton markup; `<noscript>` note stating the project list requires JavaScript and linking to `contact.html` and `services.html` for the same information.
-- [ ] **Step 5: Verify + commit** — `node --check`; commit `feat: projects page with filtering and detail dialog`.
+- [x] **Step 1: Skeleton page** — head (title `Geo&Land Kosova — Projects`, OG, BreadcrumbList), nav, page hero, stubs: FILTERS, LIST, DIALOG, CTA, footer.
+- [x] **Step 2: `projects.js` data literal** — `const PROJECTS = [...]` with every real project from §2.3 (deduplicated), each: `{ id, title, cat: 'gis-agri'|'software'|'cadastre'|'forestry', year, desc, img, org? }`. Descriptions: use source text where available (verbatim-safe condensed), else title only + category (never invent scope). Include the 4 category labels map. Write in =2 edits; verify with `node --check`.
+- [x] **Step 3: JS behavior** — render list rows into `#proj-list` (JS-rendered to avoid 24 duplicated HTML blocks); filter buttons toggle `data-active`, filter with `hidden` attr + count update in `aria-live` region; row click → fill dialog (title, meta, desc, image) + `showModal()`; close button + Esc + backdrop click; floating peek preview: on `mouseenter` set image, rAF lerp follow, disable when `matchMedia('(hover: none)')`.
+- [x] **Step 4: Page wiring** — filters + list container + dialog skeleton markup; `<noscript>` note stating the project list requires JavaScript and linking to `contact.html` and `services.html` for the same information.
+- [x] **Step 5: Verify + commit** — `node --check`; commit `feat: projects page with filtering and detail dialog`.
 
 ---
 
@@ -327,11 +327,11 @@ Foundation first (tokens → components → JS), then pages in value order (home
 
 **Files:** Create `technology.html`
 
-- [ ] **Step 1: Skeleton** — head (title `Geo&Land Kosova — Technology & Capabilities`, OG, BreadcrumbList), nav, page hero (§11.13), stubs: UAV, DELIVERABLES, ORTHOPHOTOS, AIRBUS, SOFTWARE, CTA, footer.
-- [ ] **Step 2: UAV + deliverables gallery** — §11.14 copy (source claims only: certified operators, 1cm/pixel UAV LiDAR claim, use-case list); specs rows (mono key/value): survey, orthophoto, point cloud, DEM — four lightbox groups with real images.
-- [ ] **Step 3: Orthophotos + Airbus** — §11.15 copy; Airbus dark band: partnership statement + territory line + product table (§11.16 data: constellation, swath, revisit, resolution, daily capacity — copied from source) inside `.table-scroll[tabindex="0"]`; monitoring services list (Verde, AgNeo, Farmstar, Starling, GPI) one line each from source.
-- [ ] **Step 4: Software products** — 5 cards (§2.2), each: name, context line (client/partner where real), tech line only where sourced (SPFN: HTML5, jQuery, jQuery UI, jqGrid; KFIS: FAO; SVV: MoA; Municipal GIS: Peja; Addressing System).
-- [ ] **Step 5: Review + commit** — read end-to-end; commit `feat: technology and capabilities page`.
+- [x] **Step 1: Skeleton** — head (title `Geo&Land Kosova — Technology & Capabilities`, OG, BreadcrumbList), nav, page hero (§11.13), stubs: UAV, DELIVERABLES, ORTHOPHOTOS, AIRBUS, SOFTWARE, CTA, footer.
+- [x] **Step 2: UAV + deliverables gallery** — §11.14 copy (source claims only: certified operators, 1cm/pixel UAV LiDAR claim, use-case list); specs rows (mono key/value): survey, orthophoto, point cloud, DEM — four lightbox groups with real images.
+- [x] **Step 3: Orthophotos + Airbus** — §11.15 copy; Airbus dark band: partnership statement + territory line + product table (§11.16 data: constellation, swath, revisit, resolution, daily capacity — copied from source) inside `.table-scroll[tabindex="0"]`; monitoring services list (Verde, AgNeo, Farmstar, Starling, GPI) one line each from source.
+- [x] **Step 4: Software products** — 5 cards (§2.2), each: name, context line (client/partner where real), tech line only where sourced (SPFN: HTML5, jQuery, jQuery UI, jqGrid; KFIS: FAO; SVV: MoA; Municipal GIS: Peja; Addressing System).
+- [x] **Step 5: Review + commit** — read end-to-end; commit `feat: technology and capabilities page`.
 
 ---
 
@@ -339,10 +339,10 @@ Foundation first (tokens → components → JS), then pages in value order (home
 
 **Files:** Create `contact.html`
 
-- [ ] **Step 1: Skeleton** — head (title `Geo&Land Kosova — Contact`, OG, LocalBusiness JSON-LD with both addresses, phone, email, geo), nav, page hero, stubs: CARDS, FORM, MAP, SOCIAL, footer.
-- [ ] **Step 2: Contact cards + form** — §11.17 copy; cards for Office 1, Office 2, Phone/Mobile, Email (tel:/mailto: links); form per Task 4 Step 4 with `novalidate` (JS validates) + native fallback via `action="mailto:info@geoland-kosova.com" method="post" enctype="text/plain"`; note under form: "This form composes an email in your client — or write to info@geoland-kosova.com directly."
-- [ ] **Step 3: Map + social** — lazy iframe `https://www.google.com/maps?q=Bardhyl%20%C3%87aushi%2C%20Prishtina%2C%20Kosovo&output=embed` in 16:9 frame with `loading="lazy"`, `title="Map of GeoLand office in Prishtina"`; social links (Facebook `https://www.facebook.com/pages/GeoLand/127476490650224`, Twitter `https://twitter.com/geoandland`, LinkedIn `https://www.linkedin.com/company/geo&land` — encode `&` as `%26` in href).
-- [ ] **Step 4: Review + commit** — commit `feat: contact page with validated form and map`.
+- [x] **Step 1: Skeleton** — head (title `Geo&Land Kosova — Contact`, OG, LocalBusiness JSON-LD with both addresses, phone, email, geo), nav, page hero, stubs: CARDS, FORM, MAP, SOCIAL, footer.
+- [x] **Step 2: Contact cards + form** — §11.17 copy; cards for Office 1, Office 2, Phone/Mobile, Email (tel:/mailto: links); form per Task 4 Step 4 with `novalidate` (JS validates) + native fallback via `action="mailto:info@geoland-kosova.com" method="post" enctype="text/plain"`; note under form: "This form composes an email in your client — or write to info@geoland-kosova.com directly."
+- [x] **Step 3: Map + social** — lazy iframe `https://www.google.com/maps?q=Bardhyl%20%C3%87aushi%2C%20Prishtina%2C%20Kosovo&output=embed` in 16:9 frame with `loading="lazy"`, `title="Map of GeoLand office in Prishtina"`; social links (Facebook `https://www.facebook.com/pages/GeoLand/127476490650224`, Twitter `https://twitter.com/geoandland`, LinkedIn `https://www.linkedin.com/company/geo&land` — encode `&` as `%26` in href).
+- [x] **Step 4: Review + commit** — commit `feat: contact page with validated form and map`.
 
 ---
 
@@ -350,11 +350,11 @@ Foundation first (tokens → components → JS), then pages in value order (home
 
 **Files:** Create `sitemap.xml`, `robots.txt`, `favicon.svg`, `assets/img/brand/og-home.jpg` (render from hero image via PIL script step)
 
-- [ ] **Step 1: `robots.txt`** — `User-agent: *\nAllow: /\nSitemap: https://www.geoland-kosova.com/sitemap.xml`.
-- [ ] **Step 2: `sitemap.xml`** — 6 URLs with `lastmod 2026-10-01`, `priority` home 1.0 others 0.8, `changefreq monthly`.
-- [ ] **Step 3: `favicon.svg`** — hexagon mark, ink stroke + orange node, matches nav logo mark (16–32px legible); link in every page head (add `<link rel="icon" href="favicon.svg" type="image/svg+xml">` to all 6 pages).
-- [ ] **Step 4: OG images** — script `scripts/make_og.py` (PIL): 1200×630 crop of each page hero image + 48px bottom-right ink band; output `assets/img/brand/og-<page>.jpg`; wire `og:image` absolute URLs to `https://www.geoland-kosova.com/assets/img/brand/og-<page>.jpg`.
-- [ ] **Step 5: Verify + commit** — `sitemap` parses (python `xml.etree`), favicon exists; commit `chore: sitemap, robots, favicon and social images`.
+- [x] **Step 1: `robots.txt`** — `User-agent: *\nAllow: /\nSitemap: https://www.geoland-kosova.com/sitemap.xml`.
+- [x] **Step 2: `sitemap.xml`** — 6 URLs with `lastmod 2026-10-01`, `priority` home 1.0 others 0.8, `changefreq monthly`.
+- [x] **Step 3: `favicon.svg`** — hexagon mark, ink stroke + orange node, matches nav logo mark (16–32px legible); link in every page head (add `<link rel="icon" href="favicon.svg" type="image/svg+xml">` to all 6 pages).
+- [x] **Step 4: OG images** — script `scripts/make_og.py` (PIL): 1200×630 crop of each page hero image + 48px bottom-right ink band; output `assets/img/brand/og-<page>.jpg`; wire `og:image` absolute URLs to `https://www.geoland-kosova.com/assets/img/brand/og-<page>.jpg`.
+- [x] **Step 5: Verify + commit** — `sitemap` parses (python `xml.etree`), favicon exists; commit `chore: sitemap, robots, favicon and social images`.
 
 ---
 
@@ -362,19 +362,19 @@ Foundation first (tokens → components → JS), then pages in value order (home
 
 **Files:** Create `scripts/verify.py`, `docs/qa/screenshots/**`
 
-- [ ] **Step 1: Write `scripts/verify.py`** — Playwright (chromium): for each page × viewport `[1440×900, 390×844]`: goto `http://localhost:4173/<page>.html`, wait `networkidle`, fail on any `console.error` or pageerror, fail on horizontal overflow (`document.documentElement.scrollWidth > innerWidth + 1`), screenshot to `docs/qa/screenshots/<page>-<w>.png`, assert `<h1>` exactly one, assert all `img` have `alt` attr, collect broken images (`naturalWidth === 0`) and fail if any.
-- [ ] **Step 2: Interaction checks in the same script** — services: click 3 accordion headers, assert panels toggle and only one open; projects: click filter `software`, assert row count changes, click first row, assert `dialog` open, press Esc, assert closed; contact: submit empty form, assert 2+ error messages visible; nav mobile: open drawer, assert `aria-expanded="true"`, Esc closes.
-- [ ] **Step 3: Run** — `python -m http.server 4173` (background) then `python scripts/verify.py`; Expected: `PASS 6 pages × 2 viewports`, zero console errors, zero overflow. Fix all failures before proceeding (re-run until green).
-- [ ] **Step 4: Read 4 screenshots** (home desktop, home mobile, projects desktop, contact mobile) with the Read tool; adjust spacing/typography if anything overflows, crowds, or looks generic; re-run.
-- [ ] **Step 5: Commit** — `git add scripts/verify.py docs/qa; git commit -m "test: automated page, a11y-baseline and interaction verification"`.
+- [x] **Step 1: Write `scripts/verify.py`** — Playwright (chromium): for each page × viewport `[1440×900, 390×844]`: goto `http://localhost:4173/<page>.html`, wait `networkidle`, fail on any `console.error` or pageerror, fail on horizontal overflow (`document.documentElement.scrollWidth > innerWidth + 1`), screenshot to `docs/qa/screenshots/<page>-<w>.png`, assert `<h1>` exactly one, assert all `img` have `alt` attr, collect broken images (`naturalWidth === 0`) and fail if any.
+- [x] **Step 2: Interaction checks in the same script** — services: click 3 accordion headers, assert panels toggle and only one open; projects: click filter `software`, assert row count changes, click first row, assert `dialog` open, press Esc, assert closed; contact: submit empty form, assert 2+ error messages visible; nav mobile: open drawer, assert `aria-expanded="true"`, Esc closes.
+- [x] **Step 3: Run** — `python -m http.server 4173` (background) then `python scripts/verify.py`; Expected: `PASS 6 pages × 2 viewports`, zero console errors, zero overflow. Fix all failures before proceeding (re-run until green).
+- [x] **Step 4: Read 4 screenshots** (home desktop, home mobile, projects desktop, contact mobile) with the Read tool; adjust spacing/typography if anything overflows, crowds, or looks generic; re-run.
+- [x] **Step 5: Commit** — `git add scripts/verify.py docs/qa; git commit -m "test: automated page, a11y-baseline and interaction verification"`.
 
 ---
 
 ### Task 13: Creative-director self-critique + polish
 
-- [ ] **Step 1: Run the §17 checklist** (user brief) against all screenshots: information accuracy (nothing invented — re-read copy against §2), AI-slop scan, navigation clarity, typography strength, spacing rhythm, animation taste, technical credibility, mobile intentionality, section purpose. Write findings to `docs/qa/review.md` (max 12 bullets, each with fix).
-- [ ] **Step 2: Apply fixes** — weakest 5 first; re-run verify.py; read changed screenshots.
-- [ ] **Step 3: Final commit** — `git commit -am "polish: creative-director pass — typography, spacing, motion restraint"` and tag `git tag v1.0.0`.
+- [x] **Step 1: Run the §17 checklist** (user brief) against all screenshots: information accuracy (nothing invented — re-read copy against §2), AI-slop scan, navigation clarity, typography strength, spacing rhythm, animation taste, technical credibility, mobile intentionality, section purpose. Write findings to `docs/qa/review.md` (max 12 bullets, each with fix).
+- [x] **Step 2: Apply fixes** — weakest 5 first; re-run verify.py; read changed screenshots.
+- [x] **Step 3: Final commit** — `git commit -am "polish: creative-director pass — typography, spacing, motion restraint"` and tag `git tag v1.0.0`.
 
 ---
 
