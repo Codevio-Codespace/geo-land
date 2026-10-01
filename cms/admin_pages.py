@@ -206,13 +206,20 @@ def projects_dispatch(handler, path, query, method, form, user, sid, page, redir
     return None
 
 
+def _plain_field(form, key, default=''):
+    entries = form.get(key) or []
+    if entries and entries[0].get('filename') is None:
+        return entries[0]['data'].decode('utf-8', 'replace')
+    return default
+
+
 def _process_uploads(form, user):
     entries = [e for e in form.get('image_upload', []) if e.get('filename')]
     if not entries:
         return {}
     entry = entries[0]
     mid, error = media_mod.save_upload(entry['data'], entry['filename'],
-                                       field(form, 'image_alt'))
+                                       _plain_field(form, 'image_alt'))
     if error:
         return {'error': error}
     db.log(user, 'upload', 'media', mid, f'Uploaded {entry["filename"]}')

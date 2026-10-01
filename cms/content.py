@@ -170,8 +170,16 @@ def save_project(data, actor, project_id=None):
         return None, errors
 
     slug_input = (data.get('slug') or '').strip().lower()
-    base = slugify(slug_input or title)
-    slug = unique_slug(base, exclude_id=project_id)
+    if project_id:
+        existing = project_by_id(project_id)
+        if not existing:
+            return None, ['Project not found.']
+        if slug_input and slug_input != existing['slug']:
+            slug = unique_slug(slugify(slug_input), exclude_id=project_id)
+        else:
+            slug = existing['slug']
+    else:
+        slug = unique_slug(slugify(slug_input or title))
     featured = 1 if _flag(data, 'featured') else 0
     rank = _int(data, 'featured_rank', 100)
     published = 1 if _flag(data, 'published') else 0

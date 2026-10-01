@@ -109,6 +109,12 @@ def flat(form):
     return out
 
 
+def auth_page(title, template_name, error=''):
+    content = render.template(template_name, error=error)
+    body = render.template('layout', title=title, nav='', notice='', csrf='', content=content)
+    return Response(200, body)
+
+
 def handle(handler, path, query, method):
     form = {}
     if method == 'POST':
@@ -125,13 +131,12 @@ def handle(handler, path, query, method):
         if auth.has_user():
             return redirect('/admin/login')
         if method == 'GET':
-            return page('Set up', 'dashboard', 'admin', render.template('setup', error=''), '', '')
+            return auth_page('Set up', 'setup')
         username = field(form, 'username')
         pw = field(form, 'password')
         ok, error = auth.create_user(username, pw)
         if not ok:
-            return page('Set up', 'dashboard', 'admin',
-                        render.template('setup', error=error), '', '')
+            return auth_page('Set up', 'setup', error)
         sid = auth.login(username, pw)
         return Response(303, '', 'text/plain', [('Location', '/admin')] + set_cookie(sid))
 
@@ -139,18 +144,15 @@ def handle(handler, path, query, method):
         if method == 'POST':
             ip = handler.client_address[0]
             if auth.rate_limited(ip):
-                return page('Log in', 'dashboard', 'admin',
-                            render.template('login', error='Too many attempts — wait a few minutes.'),
-                            '', '')
+                return auth_page('Log in', 'login', 'Too many attempts — wait a few minutes.')
             username = field(form, 'username')
             pw = field(form, 'password')
             sid = auth.login(username, pw)
             if not sid:
                 auth.record_failure(ip)
-                return page('Log in', 'dashboard', 'admin',
-                            render.template('login', error='Invalid username or password.'), '', '')
+                return auth_page('Log in', 'login', 'Invalid username or password.')
             return Response(303, '', 'text/plain', [('Location', '/admin')] + set_cookie(sid))
-        return page('Log in', 'dashboard', 'admin', render.template('login', error=''), '', '')
+        return auth_page('Log in', 'login')
 
     if path == '/admin/logout':
         if method == 'POST':
@@ -163,9 +165,10 @@ def handle(handler, path, query, method):
     if method == 'POST':
         token = field(form, 'csrf')
         if not auth.check_csrf(sid, token):
-            return page('Denied', 'dashboard', user,
-                        '<h1>Request blocked</h1><p>The security token was missing or expired. '
-                        'Go back and try again.</p>', '', sid)
+            return Response(403, render.template(
+                'layout', title='Denied', nav='', notice='', csrf='',
+                content='<h1>Request blocked</h1><p>The security token was missing or expired. '
+                        'Go back and try again.</p>'), 'text/html; charset=utf-8')
     return _routes(handler, path, query, method, form, user, sid)
 
 

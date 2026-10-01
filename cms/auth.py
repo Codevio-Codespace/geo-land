@@ -48,8 +48,8 @@ def create_user(username, pw):
     username = (username or '').strip()
     if len(username) < 3 or len(username) > 40:
         return False, 'Username must be 3–40 characters.'
-    if len(pw or '') < 10:
-        return False, 'Password must be at least 10 characters.'
+    if len(pw or '') < 8:
+        return False, 'Password must be at least 8 characters.'
     db.execute('INSERT INTO users (username, pw_hash, created_at) VALUES (?,?,?)',
                (username, hash_password(pw), db.now()))
     return True, None

@@ -9,8 +9,8 @@ def esc(value):
     return html.escape(str(value if value is not None else ''), quote=True)
 
 
-def template(name, **ctx):
-    path = os.path.join(TEMPLATE_DIR, name + '.html')
+def template(template_name, **ctx):
+    path = os.path.join(TEMPLATE_DIR, template_name + '.html')
     if not os.path.exists(path):
         return ''
     t = open(path, encoding='utf-8').read()
