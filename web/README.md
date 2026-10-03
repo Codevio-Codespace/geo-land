@@ -105,8 +105,9 @@ Notes:
 
 Netlify scans repository files and build output for configured environment variable values.
 The site URL also appears in existing website content, and Next.js can embed `NEXT_PUBLIC_*`
-values in build output. The root `netlify.toml` excludes only `NEXT_PUBLIC_SITE_URL`,
-`NEXT_PUBLIC_SUPABASE_URL`, and `NEXT_PUBLIC_SUPABASE_ANON_KEY` from value scanning.
+values in build output. The root `netlify.toml` sets `SECRETS_SCAN_OMIT_KEYS` to
+`NEXT_PUBLIC_SITE_URL` only, so this intentionally public URL does not block deploys.
+No Supabase environment variables are excluded from value scanning.
 The Supabase anon key is intended for public use and relies on the schema's row-level-security
 policies; never use a service-role or secret key for `NEXT_PUBLIC_SUPABASE_ANON_KEY`.
 
