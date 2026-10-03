@@ -91,6 +91,36 @@ Notes:
 - Drafts (`published = 0`) never appear on the public site or in the sitemap.
 - Old `.html` URLs redirect permanently to the new clean routes.
 
+## Deploy (Netlify)
+
+1. Import the repository. The root `netlify.toml` sets the base directory to `web`
+   and the publish directory to `.next`.
+2. Add the four environment variables in Netlify's environment variable settings.
+   The `NEXT_PUBLIC_*` values are intentionally public. Keep `SUPABASE_SERVICE_ROLE_KEY`
+   secret and available to server functions at runtime; never prefix it with `NEXT_PUBLIC_`
+   or put it in `next.config.ts`'s `env` configuration.
+3. Deploy. Add your production domain to Supabase *Authentication → URL configuration*.
+
+### Secret scanning
+
+Netlify scans repository files and build output for configured environment variable values.
+The site URL also appears in existing website content, and Next.js can embed `NEXT_PUBLIC_*`
+values in build output. The root `netlify.toml` excludes only `NEXT_PUBLIC_SITE_URL`,
+`NEXT_PUBLIC_SUPABASE_URL`, and `NEXT_PUBLIC_SUPABASE_ANON_KEY` from value scanning.
+The Supabase anon key is intended for public use and relies on the schema's row-level-security
+policies; never use a service-role or secret key for `NEXT_PUBLIC_SUPABASE_ANON_KEY`.
+
+Scanning remains enabled for `SUPABASE_SERVICE_ROLE_KEY` and all other secrets, with no
+file or directory exclusions. Privileged Supabase access is marked server-only and reads
+the service-role key from the runtime environment rather than shared public configuration.
+Real `.env` files are ignored; `.env.local.example` contains placeholders only.
+
+If a deploy still reports a secret, check the variable name and file locations in the
+scan report (the lines before the generic failure message). Remove the value from those
+files or output instead of excluding the private key or disabling scanning. If a private
+credential was exposed, rotate it in the provider's dashboard and update the Netlify
+environment variable before redeploying. Repository changes alone do not revoke old keys.
+
 ## Deploy (Vercel)
 
 1. Import the repository, set **Root Directory** to `web`.
