@@ -1,7 +1,6 @@
 import { fallbackMedia, fallbackMilestones, fallbackProjects, fallbackServices } from './fallback';
 import { supabasePublic } from './supabase/public';
-import { supabaseAdmin } from './supabase/admin';
-import { hasServiceRole } from './supabase/config';
+import { hasServiceRole, supabaseAdmin } from './supabase/admin';
 import type { ActivityRow, MediaRow, MilestoneRow, ProjectRow, ServiceRow } from './db-types';
 
 function logFallback(scope: string, error: unknown) {

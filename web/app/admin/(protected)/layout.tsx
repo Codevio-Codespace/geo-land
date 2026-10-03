@@ -1,7 +1,8 @@
 import { redirect } from 'next/navigation';
 import { AdminBar } from '@/components/admin/AdminBar';
 import { currentUser } from '@/lib/supabase/server';
-import { hasServiceRole, isSupabaseConfigured } from '@/lib/supabase/config';
+import { hasServiceRole } from '@/lib/supabase/admin';
+import { isSupabaseConfigured } from '@/lib/supabase/config';
 
 export default async function ProtectedAdminLayout({ children }: { children: React.ReactNode }) {
   if (!isSupabaseConfigured() || !hasServiceRole()) {

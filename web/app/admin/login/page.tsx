@@ -1,5 +1,6 @@
 import { loginAction } from '@/app/admin/actions';
-import { isSupabaseConfigured, hasServiceRole } from '@/lib/supabase/config';
+import { hasServiceRole } from '@/lib/supabase/admin';
+import { isSupabaseConfigured } from '@/lib/supabase/config';
 
 export default async function LoginPage({
   searchParams,
