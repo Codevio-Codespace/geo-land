@@ -1,0 +1,62 @@
+[
+  {
+    "anchor": "gis",
+    "name": "GIS & Software Development",
+    "sort": 10,
+    "short_scope": "Spatial data infrastructure, Web-GIS and software for land, agriculture and forestry.",
+    "scope_items": "Data acquisition and digitisation\nData management and maintenance\nData conversion and integration\nData validation and processing\nAnalyses and evaluations\nGIS project management\nSystem integration (EAI)\nData and services hosting / mash-up\nDevelopment and programming of geo components\nDesign of geo infrastructures\nGIS operation (outsourcing)",
+    "scope_paragraph": "",
+    "deliverables": "Deliverables — desktop GIS · mobile GIS/LBS · geo service server · geodata server · DBMS storage · GDI components · Web-GIS for agriculture, forestry and local government",
+    "image": "/assets/img/services/gis"
+  },
+  {
+    "anchor": "surveying",
+    "name": "Surveying",
+    "sort": 20,
+    "short_scope": "Geodetic control networks, engineering surveying and monitoring for demanding construction.",
+    "scope_items": "Geodetic control networks — design, reconnaissance, establishment\nSurveying, processing and adjustment, analysis\nUrban planning\nEngineering — tunnel and railway construction\nMining, roads and bridges\nHydropower plants\nMonitoring",
+    "scope_paragraph": "",
+    "deliverables": "Deliverables — geodetic control networks · engineering set-out · deformation monitoring",
+    "image": "/assets/img/services/surveying"
+  },
+  {
+    "anchor": "mapping",
+    "name": "Mapping & Remote Sensing",
+    "sort": 30,
+    "short_scope": "2D and 3D mapping, satellite imagery interpretation and land-cover analysis.",
+    "scope_items": "Digital 2D mapping\nDigital 3D mapping\nMobile mapping\nForestry, agriculture, mining and geology mapping\nSatellite imagery interpretation and classification\nLand cover and land usage maps\nIdentification and delineation of forest types\nMonitoring and watershed management",
+    "scope_paragraph": "",
+    "deliverables": "Deliverables — 2D and 3D maps · land cover · forest type delineation",
+    "image": "/assets/img/services/mapping"
+  },
+  {
+    "anchor": "agri",
+    "name": "Agriculture & Forestry",
+    "sort": 40,
+    "short_scope": "Land registration, consolidation, forest and agriculture inventory, GIS-based registers.",
+    "scope_items": "Agriculture land registration\nRural development\nLand consolidation\nAgriculture and forestry inventory\nCreation of GIS-based registers\nProject management",
+    "scope_paragraph": "",
+    "deliverables": "Deliverables — registers · inventories · consolidation and rural development plans",
+    "image": "/assets/img/services/agriculture"
+  },
+  {
+    "anchor": "ortho",
+    "name": "Orthophotos",
+    "sort": 50,
+    "short_scope": "Aerial imagery and orthophotos for Kosovo, Albania and North Macedonia.",
+    "scope_items": "",
+    "scope_paragraph": "For the purpose of urban-spatial planning, Geo&Land offers different aerial images and orthophotos for Kosovo, Albania and North Macedonia. In order to manage urban, development and legalization plans, we offer a GIS municipal portal.",
+    "deliverables": "Deliverables — orthophotos · aerial imagery · GIS municipal portal",
+    "image": "/assets/img/services/orthophotos"
+  },
+  {
+    "anchor": "uav",
+    "name": "Aerial Data Collection — UAV Surveying",
+    "sort": 60,
+    "short_scope": "Certified operators; UAV LiDAR survey deliverables at up to 1 cm/pixel.",
+    "scope_items": "Mapping\nAgriculture and forestry\nMining and volume calculation\nVegetation and crop diagnosis\nOil and gas\nInfrastructure and utilities\nEmergency and disaster response",
+    "scope_paragraph": "Certified UAV operators control data capture, analysis and archival — with UAV LiDAR survey deliverables at up to 1 cm/pixel resolution.",
+    "deliverables": "Deliverables — surveying · orthophoto · point cloud · DEM",
+    "image": "/assets/img/uav/surveying-1"
+  }
+]

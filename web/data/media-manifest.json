@@ -1,0 +1,213 @@
+[
+  {
+    "base": "/assets/img/projects/soil-map",
+    "alt": "Soil map of the Municipality of Rahovec",
+    "width": 458,
+    "height": 316,
+    "widths": [
+      458
+    ]
+  },
+  {
+    "base": "/assets/img/projects/kfis",
+    "alt": "Integration of the GIS module in KFIS",
+    "width": 1600,
+    "height": 536,
+    "widths": [
+      1600,
+      900,
+      640
+    ]
+  },
+  {
+    "base": "/assets/img/projects/vineyard-register",
+    "alt": "Further development of the vineyard register and interoperability with the national farm register",
+    "width": 439,
+    "height": 250,
+    "widths": [
+      439
+    ]
+  },
+  {
+    "base": "/assets/img/projects/vineyard-kaveko",
+    "alt": "Development of vineyard cadastre and national register based on GIS",
+    "width": 780,
+    "height": 360,
+    "widths": [
+      780,
+      640
+    ]
+  },
+  {
+    "base": "/assets/img/projects/vineyard-rahovec",
+    "alt": "Creation of vineyard cadastre for the Rahovec area based on GIS",
+    "width": 493,
+    "height": 280,
+    "widths": [
+      493
+    ]
+  },
+  {
+    "base": "/assets/img/projects/spfn",
+    "alt": "National Farmer and Payment System (SPFN)",
+    "width": 780,
+    "height": 360,
+    "widths": [
+      780,
+      640
+    ]
+  },
+  {
+    "base": "/assets/img/projects/gis-peja",
+    "alt": "Development of GIS system for local government",
+    "width": 780,
+    "height": 360,
+    "widths": [
+      780,
+      640
+    ]
+  },
+  {
+    "base": "/assets/img/projects/addressing",
+    "alt": "Addressing System",
+    "width": 800,
+    "height": 334,
+    "widths": [
+      800,
+      640
+    ]
+  },
+  {
+    "base": "/assets/img/projects/drenas",
+    "alt": "Expropriation application for the economic zone in Drenas",
+    "width": 1251,
+    "height": 891,
+    "widths": [
+      1251,
+      900,
+      640
+    ]
+  },
+  {
+    "base": "/assets/img/projects/prishtina-planning",
+    "alt": "Land surveying for urban planning, Prishtina",
+    "width": 1263,
+    "height": 893,
+    "widths": [
+      1263,
+      900,
+      640
+    ]
+  },
+  {
+    "base": "/assets/img/projects/geodetic-banner",
+    "alt": "Surveying Services",
+    "width": 914,
+    "height": 385,
+    "widths": [
+      914,
+      900,
+      640
+    ]
+  },
+  {
+    "base": "/assets/img/projects/brezovica",
+    "alt": "Expropriation for Brezovica Resort",
+    "width": 674,
+    "height": 321,
+    "widths": [
+      674,
+      640
+    ]
+  },
+  {
+    "base": "/assets/img/projects/digital-map",
+    "alt": "Creation of digital maps for GIS advancement",
+    "width": 440,
+    "height": 263,
+    "widths": [
+      440
+    ]
+  },
+  {
+    "base": "/assets/img/projects/cadastre-reconstruction",
+    "alt": "Cadastral reconstruction in 5 cadastral zones",
+    "width": 508,
+    "height": 348,
+    "widths": [
+      508
+    ]
+  },
+  {
+    "base": "/assets/img/gallery/field-008",
+    "alt": "Surveying and 3D mapping of the dumps in Fushe Kosove, Kline, Podujeve, Gjakove, Ferizaj, Lipjan and Kaçanik",
+    "width": 1600,
+    "height": 1200,
+    "widths": [
+      1600,
+      900,
+      640
+    ]
+  },
+  {
+    "base": "/assets/img/services/gis",
+    "alt": "GIS & Software Development",
+    "width": 800,
+    "height": 334,
+    "widths": [
+      800,
+      640
+    ]
+  },
+  {
+    "base": "/assets/img/services/surveying",
+    "alt": "Surveying",
+    "width": 800,
+    "height": 334,
+    "widths": [
+      800,
+      640
+    ]
+  },
+  {
+    "base": "/assets/img/services/mapping",
+    "alt": "Mapping & Remote Sensing",
+    "width": 760,
+    "height": 250,
+    "widths": [
+      760,
+      640
+    ]
+  },
+  {
+    "base": "/assets/img/services/agriculture",
+    "alt": "Agriculture & Forestry",
+    "width": 696,
+    "height": 300,
+    "widths": [
+      696,
+      640
+    ]
+  },
+  {
+    "base": "/assets/img/services/orthophotos",
+    "alt": "Orthophotos",
+    "width": 750,
+    "height": 250,
+    "widths": [
+      750,
+      640
+    ]
+  },
+  {
+    "base": "/assets/img/uav/surveying-1",
+    "alt": "Aerial Data Collection — UAV Surveying",
+    "width": 976,
+    "height": 1500,
+    "widths": [
+      976,
+      900,
+      640
+    ]
+  }
+]
