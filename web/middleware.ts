@@ -2,7 +2,7 @@ import { createServerClient } from '@supabase/ssr';
 import { NextResponse, type NextRequest } from 'next/server';
 import { SUPABASE_ANON_KEY, SUPABASE_URL, isSupabaseConfigured } from '@/lib/supabase/config';
 
-export async function proxy(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   if (!isSupabaseConfigured()) return NextResponse.next();
 
   let response = NextResponse.next({ request });

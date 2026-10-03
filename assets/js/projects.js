@@ -130,8 +130,14 @@
     if (countEl) countEl.textContent = '—';
   }
 
+  const parse = (r) => {
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    return r.json();
+  };
+
   fetch('/api/projects')
-    .then((r) => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+    .then(parse)
+    .catch(() => fetch('assets/js/projects.json').then(parse))
     .then((data) => { PROJECTS = Array.isArray(data.projects) ? data.projects : []; boot(); })
     .catch(registerFailure);
 })();

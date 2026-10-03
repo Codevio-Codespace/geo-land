@@ -4,3 +4,4 @@ assets/uploads/
 __pycache__/
 cms/__pycache__/
 .netlify/
+netlify-drop/
