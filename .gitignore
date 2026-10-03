@@ -1,7 +1,8 @@
-﻿
-/data/
-assets/uploads/
-__pycache__/
-cms/__pycache__/
-.netlify/
-netlify-drop/
+node_modules/
+.next/
+.vercel/
+.env
+.env.*
+!.env*.example
+next-env.d.ts
+*.tsbuildinfo
